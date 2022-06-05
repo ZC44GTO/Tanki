@@ -107,9 +107,7 @@ return game.getWorld().entities_0.array_hd7ov6$_0.at(0).components_0.array.at(0)
 
 
 game.getPlayers = function(){
-return game.getWorld().physicsScene_0.bodies_0.array_hd7ov6$_0  
-  
-  
+return game.getTank().components_0.array[33].gameMode_0.tanksOnField
   
 }
 game.getBattleState = function(){
@@ -285,6 +283,40 @@ game.getTankPhysics().body_xsop3k$_0.state.position.z = vars.FlagB.z
 }
 }
 
+function getNames(){
+try {
+Table = document.getElementsByTagName("table")
+cName = Table[0].children[1].children[1].children[0].className
+tElems = document.getElementsByClassName(cName)  
+for(let i=0;i<tElems.length;i++){
+tElems[i].addEventListener("click",function(){
+splitArray = (tElems[i].innerText).split("]") 
+if(splitArray.length == 1){
+tpName = (tElems[i].innerText).trim()
+}
+if(splitArray.length == 2){
+tpName = (splitArray[1]).trim()
+}  
+  
+  
+  
+  
+})  
+}
+} catch (error) {
+    
+}
+}
+
+
+
+
+let gn = setInterval(getNames,100)
+
+
+
+
+
 
 function tpByName(){
 try {
@@ -320,56 +352,6 @@ game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$
 }
 }
 }
-
-
-/*function getNames(){
-names = document.querySelectorAll(".sc-ifAKCX.kHOYKX")
-for(let i=0;i<names.length;i++){
-names[i].addEventListener("click",function(){
-
-splitArray = (names[i].innerText).split("]") 
-if(splitArray.length == 1){
-tpName = (names[i].innerText).trim()
-}
-if(splitArray.length == 2){
-tpName = (splitArray[1]).trim()
-}
-     
-    
-})
-
-    
-}
-}
-function getNames2(){  
-names2 = document.querySelectorAll(".sc-iwsKbI.iSYfOY")
-  
-for(let i=0;i<names2.length;i++){
-names2[i].addEventListener("click",function(){
-
-splitArray = (names2[i].innerText).split("]") 
-if(splitArray2.length == 1){
-tpName = (names2[i].innerText).trim()
-}
-if(splitArray2.length == 2){
-tpName = (splitArray2[1]).trim()
-}
-     
-    
-})
-
-    
-}  
-
-}
-
-
-
-let gn = setInterval(getNames,100)
-let gn2= setInterval(getNames2,100)
-
-*/
-
 
 
 
@@ -461,7 +443,5 @@ hacks.TPFlagB()
 
 
 document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.savedTP()}})
-
-
 
 
