@@ -38,7 +38,7 @@ randomTP = null
 TPFlagB = null
 TPFlagB = null
 goldTP = null
-
+speedhack = null
 
 
 }
@@ -234,8 +234,19 @@ supps = setInterval(getSupplyArrays,500)
 
 //HACKS
 
+hacks.speedhack = function(){
+try{
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = 15000
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = 15000
+game.getAirwalk().speedCharacteristics_0.acceleration = 8000
+ 
+}catch (error) {
+ return Error
+}
 
+}
 
+let speed = setInterval(hacks.speedhack,1500)
 
 
 
