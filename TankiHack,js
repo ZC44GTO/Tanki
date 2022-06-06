@@ -382,8 +382,8 @@ game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$
 
 hacks.randomTP = function(){
 try {
-game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.x = commons.getRandom(game.getMapBoundary.minX,game.getMapBoundary.maxX)
-game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.y = commons.getRandom(game.getMapBoundary.minY,game.getMapBoundary.maxY)
+game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.x = commons.getRandom(game.getMapBoundary().minX,game.getMapBoundary().maxX)
+game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.y = commons.getRandom(game.getMapBoundary().minY,game.getMapBoundary().maxY)
 } catch (error) {
   
 }  
