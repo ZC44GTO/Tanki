@@ -569,7 +569,11 @@ game.getWorld().physicsScene_0.gravity.z  = 0
 
 
 
-
+function tpDown(){
+if(game.getChatState()==null){
+game.getTankPhysics().body_xsop3k$_0.state.position.z-=500
+}
+}
 
 
 
@@ -713,8 +717,9 @@ clearInterval(window.gg)
   
   
   
+document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
 
-document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
+document.addEventListener('keydown',   function (event) { if (event.key === 'f'){tpDown()}})
 
 document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
 
