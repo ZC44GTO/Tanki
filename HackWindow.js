@@ -46,7 +46,7 @@ draggable(hackWindow)
 
 
 title = document.createElement("span")
-title.innerText = "Players"
+title.innerText = "New Hack"
 hackWindow.appendChild(title)
 
 title_style = {
@@ -54,7 +54,7 @@ title_style = {
 color:"white",
 textAlign:"center",
 fontSize : "23px",
-padding: "23px 30%",
+padding: "23px 43%",
    
 
 
