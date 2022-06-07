@@ -665,7 +665,7 @@ AWpressCount ++
 if(AWpressCount%2==1){
 hacks.airWalk()
 window.rgt = game.getWorld().physicsScene_0.gravity.z 
-   
+window.NZR = setInterval(noZVelocity,1)  
 }
 
 if(AWpressCount%2==0){
@@ -674,7 +674,7 @@ game.getAirwalk().params_nd1j3b$_0.dampingCoeff = 2000
 game.getAirwalk().params_nd1j3b$_0.springCoeff= 16000
 game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
 game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = rgt
-
+clearInterval(window.NZR)
   
    
 }
