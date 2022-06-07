@@ -248,7 +248,52 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 let speed = setInterval(hacks.speedhack,1500)
 
+hacks.simpleTP = function(){
+ if (KeyPressing.isKeyPressed(87 /*key: W*/) && game.getChatState()==null)
+    {
+       
 
+        
+            
+            game.getTankPhysics().body.state.velocity.x += 1500 * Math.sin(-direction);
+            game.getTankPhysics().body.state.velocity.y += 1500 * Math.cos(-direction);
+        
+    }
+
+    if (KeyPressing.isKeyPressed(83 /*key: S*/) && game.getChatState()==null)
+    {
+        
+        game.getTankPhysics().body.state.velocity.x -= 1500 * Math.sin(-direction);
+            game.getTankPhysics().body.state.velocity.y -= 1500 * Math.cos(-direction);
+    }
+
+    if (KeyPressing.isKeyPressed(65 /*key: A*/) && game.getChatState()==null)
+    {
+        
+
+       
+           
+
+            game.getTankPhysics().body.state.x -= 1500 * Math.sin(-(direction - Math.PI / 2));
+            game.getTankPhysics().body.state.y -= 1500 * Math.cos(-(direction - Math.PI / 2));
+        
+    }
+
+    if (KeyPressing.isKeyPressed(68 /*key: D*/) && game.getChatState()==null)
+    {
+        
+
+       
+            game.getTankPhysics().body.state.x += 1500 * Math.sin(-(direction - Math.PI / 2));
+            game.getTankPhysics().body.state.y += 1500 * Math.cos(-(direction - Math.PI / 2));
+        
+    }
+
+
+
+
+
+}
 
 
 
