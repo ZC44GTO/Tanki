@@ -199,14 +199,14 @@ minusButton.appendChild(mSign)
 
 plusButton.addEventListener("click",function(){
 
-tps.innerText = parseInt(tps.innerText) +10
-TPspeed +=10
+tps.innerText = parseInt(tps.innerText) +1000
+TPspeed +=1000
   
 })
 minusButton.addEventListener("click",function(){
 
 tps.innerText =  parseInt(tps.innerText) -10
-TPspeed -=10
+TPspeed -=1000
 
   
 })
