@@ -1,3 +1,160 @@
+//gui
+
+root = document.querySelector("#root")
+stateWindow = document.createElement("div")
+stateWindow_style={
+    display: "flex",
+    backgroundColor: "black",
+    height:"55%",
+    width:"17%",
+    position:"absolute",
+    opacity: "0.55",
+    left:"50%",
+    right:"50%",
+    transform:"translate(-50%,-50%)",
+    borderRadius:"20px",
+    borderBottom:"1px solid black",
+    borderLeft:"1px solid black",
+    borderTop:"1px solid black",
+    borderRight:"1px solid black",
+    borderWidth:"3px"
+}
+stateWindow.style.outline = "1px solid red"
+//Object.assign():
+Object.assign(stateWindow.style,stateWindow_style);
+root.appendChild(stateWindow)
+
+function draggable(el) {
+  el.addEventListener('mousedown', function(e) {
+    var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
+    var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
+    
+    function mouseMoveHandler(e) {
+      el.style.top = (e.clientY - offsetY) + 'px';
+      el.style.left = (e.clientX - offsetX) + 'px';
+    }
+
+    function reset() {
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', reset);
+    }
+
+    window.addEventListener('mousemove', mouseMoveHandler);
+    window.addEventListener('mouseup', reset);
+  });
+}
+
+draggable(stateWindow)
+
+
+title = document.createElement("span")
+title.innerText = "State"
+stateWindow.appendChild(title)
+
+title_style = {
+
+color:"white",
+textAlign:"center",
+fontSize : "23px",
+padding: "23px 35%",
+   
+
+
+    
+}
+
+
+
+Object.assign(title.style,title_style)
+
+
+
+
+Sautoclick = document.createElement("span")
+Sairwalk = document.createElement("span")
+Srandomtp = document.createElement("span")
+
+
+label_style = {
+position:"absolute",
+fontSize:"18px",
+padding:"23px 10%",
+color:"white",
+  
+}
+
+Object.assign(Sautoclick.style,label_style)
+Object.assign(Sairwalk.style,label_style)
+Object.assign(Srandomtp.style,label_style)
+
+Sautoclick.innerText = "Autoclicker:"
+Sairwalk.innerText = "Airwalk:"
+Srandomtp.innerText = "RandomTP:"
+
+Sautoclick.style.bottom = "64%"
+Sairwalk.style.bottom = "50%"
+Srandomtp.style.bottom = "36%"
+
+
+stateWindow.appendChild(Sautoclick)
+stateWindow.appendChild(Sairwalk)
+stateWindow.appendChild(Srandomtp)
+onOff_style = {
+position:"absolute",
+fontSize:"18px",
+padding:"23px 10%",
+color:"red",
+right:"0%"
+  
+}
+
+
+State1 = document.createElement("span")
+State2 = document.createElement("span")
+State3 = document.createElement("span")
+
+Object.assign(State1.style,onOff_style)
+Object.assign(State2.style,onOff_style)
+Object.assign(State3.style,onOff_style)
+
+
+
+
+
+
+State1.innerText = "OFF"
+State2.innerText = "OFF"
+State3.innerText = "OFF"
+
+
+
+
+
+
+stateWindow.appendChild(State1)
+stateWindow.appendChild(State2)
+stateWindow.appendChild(State3)
+
+
+
+Sautoclick.style.bottom = "64%"
+Sairwalk.style.bottom = "50%"
+Srandomtp.style.bottom = "36%"
+
+
+
+State1.style.bottom = "64%"
+State2.style.bottom = "50%"
+State3.style.bottom = "36%"
+
+
+root.removeChild(stateWindow)
+//gui end
+
+
+
+
+
 class commons{
 getRoot = null
 getReactRoot = null
@@ -608,14 +765,15 @@ document.addEventListener('keydown', function (event) { if (event.key === 'End')
 ACpressCount ++
 if(ACpressCount%2==1){
 window.p = setInterval(hacks.clicker,25)
-
-   
+State1.innerText = "ON"
+State1.style.color = "green"   
 }
 
 if(ACpressCount%2==0){
 
 clearInterval(window.p)
-   
+State1.innerText = "OFF"
+State1.style.color = "red"   
 }
 
 
@@ -628,15 +786,15 @@ document.addEventListener('keydown', function (event) { if (event.key === 'Home'
 FpressCount ++
 if(FpressCount%2==1){
 window.fakeR = setInterval(hacks.randomTP,1)
-document.querySelector("#unflip").style.color = "green"
-   
+State3.innerText = "ON"
+State3.style.color = "green"   
 }
 
 if(FpressCount%2==0){
 
 clearInterval(window.fakeR)
-document.querySelector("#unflip").style.color = "red"
-   
+State3.innerText = "OFF"
+State3.style.color = "red"
 }
 
 
@@ -673,7 +831,12 @@ AWpressCount ++
 if(AWpressCount%2==1){
 hacks.airWalk()
 window.rgt = game.getWorld().physicsScene_0.gravity.z 
-window.NZR = setInterval(noZVelocity,1)  
+window.NZR = setInterval(noZVelocity,1) 
+State2.innerText = "ON"
+State2.style.color = "green"
+
+
+
 }
 
 if(AWpressCount%2==0){
@@ -683,6 +846,9 @@ game.getAirwalk().params_nd1j3b$_0.springCoeff= 16000
 game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
 game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = rgt
 clearInterval(window.NZR)
+State2.innerText = "OFF"
+State2.style.color = "red"
+
   
    
 }
@@ -696,6 +862,9 @@ document.addEventListener('keydown', function (event) { if (event.key === '['){
 GpressCount ++
 if(GpressCount%2==1){
 window.gg = setInterval(hacks.goldTP,1)
+State4.innerText = "ON"
+State4.style.color = "green"
+
 
    
 }
@@ -703,6 +872,29 @@ window.gg = setInterval(hacks.goldTP,1)
 if(GpressCount%2==0){
 
 clearInterval(window.gg)
+State4.innerText = "OFF"
+State4.style.color = "red"
+
+   
+}
+
+
+}})
+
+
+
+WpressCount = 0
+document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
+WpressCount ++
+if(WpressCount%2==1){
+root.appendChild(stateWindow)
+
+   
+}
+
+if(WpressCount%2==0){
+
+root.removeChild(stateWindow)
    
 }
 
