@@ -73,6 +73,7 @@ Object.assign(title.style,title_style)
 Sautoclick = document.createElement("span")
 Sairwalk = document.createElement("span")
 Srandomtp = document.createElement("span")
+Sgoldtp = document.createElement("span")
 
 
 label_style = {
@@ -86,19 +87,27 @@ color:"white",
 Object.assign(Sautoclick.style,label_style)
 Object.assign(Sairwalk.style,label_style)
 Object.assign(Srandomtp.style,label_style)
+Object.assign(Sgoldtp.style,label_style)
 
 Sautoclick.innerText = "Autoclicker:"
 Sairwalk.innerText = "Airwalk:"
 Srandomtp.innerText = "RandomTP:"
+Sgoldtp.innerText = "GoldTP:"
+
 
 Sautoclick.style.bottom = "64%"
 Sairwalk.style.bottom = "50%"
 Srandomtp.style.bottom = "36%"
-
+Sgoldtp.style.bottom = "22%"
 
 stateWindow.appendChild(Sautoclick)
 stateWindow.appendChild(Sairwalk)
 stateWindow.appendChild(Srandomtp)
+stateWindow.appendChild(Sgoldtp)
+
+
+
+
 onOff_style = {
 position:"absolute",
 fontSize:"18px",
@@ -112,10 +121,15 @@ right:"0%"
 State1 = document.createElement("span")
 State2 = document.createElement("span")
 State3 = document.createElement("span")
+State4 = document.createElement("span")
+
+
+
 
 Object.assign(State1.style,onOff_style)
 Object.assign(State2.style,onOff_style)
 Object.assign(State3.style,onOff_style)
+Object.assign(State4.style,onOff_style)
 
 
 
@@ -125,6 +139,7 @@ Object.assign(State3.style,onOff_style)
 State1.innerText = "OFF"
 State2.innerText = "OFF"
 State3.innerText = "OFF"
+State4.innerText = "OFF"
 
 
 
@@ -134,21 +149,16 @@ State3.innerText = "OFF"
 stateWindow.appendChild(State1)
 stateWindow.appendChild(State2)
 stateWindow.appendChild(State3)
+stateWindow.appendChild(State4)
 
-
-
-Sautoclick.style.bottom = "64%"
-Sairwalk.style.bottom = "50%"
-Srandomtp.style.bottom = "36%"
 
 
 
 State1.style.bottom = "64%"
 State2.style.bottom = "50%"
 State3.style.bottom = "36%"
+State4.style.bottom = "22%"
 
-
-root.removeChild(stateWindow)
 //gui end
 
 
