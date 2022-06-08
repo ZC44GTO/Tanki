@@ -251,7 +251,7 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 let speed = setInterval(hacks.speedhack,1500)
 
-hacks.simpleTP = function()
+function simpleTP()
  {if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
        
@@ -295,7 +295,7 @@ hacks.simpleTP = function()
 }
 
 
-let ckp = setInterval(hacks.simpleTP,10)
+let ckp = setInterval(simpleTP,10)
 
 
 
