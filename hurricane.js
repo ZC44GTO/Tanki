@@ -87,8 +87,6 @@ color:"white",
 
 Object.assign(Sautoclick.style,label_style)
 Object.assign(Sairwalk.style,label_style)
-Object.assign(Srandomtp.style,label_style)
-Object.assign(Sgoldtp.style,label_style)
 
 Sautoclick.innerText = "Autoclicker:"
 Sairwalk.innerText = "SimpleTP:"
