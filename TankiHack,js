@@ -492,9 +492,15 @@ let speed = setInterval(hacks.speedhack,1500)
 
 
 
- TPspeed = parseInt(tps.innerText)
 function simpleTP()
- {if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
+
+ {
+  TPspeed = parseInt(tps.innerText)
+
+ 
+ 
+ 
+ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
        
 
