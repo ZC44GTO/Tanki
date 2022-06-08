@@ -1,6 +1,6 @@
 
 //gui
-
+tpspeed = 200
 root = document.querySelector("#root")
 stateWindow = document.createElement("div")
 stateWindow_style={
@@ -168,7 +168,7 @@ tps = document.createElement("span")
 plusButton = document.createElement("button")
 minusButton = document.createElement("button")
 
-tps.innerText = 150
+tps.innerText = tpspeed
 
 tps.style.position = "absolute"
 tps.style.color = "white"
@@ -264,18 +264,14 @@ getAirwalk = null
 
 
 class hacks{
-airWalk = null
 clicker = null
-flagTP = null
 oneHitKill = null
 noLaser = null
 autoHeal = null
 simpleTP = null
 playerTP = null
-rapidUpdate = null
 randomTP = null
-TPFlagB = null
-TPFlagB = null
+
 goldTP = null
 speedhack = null
 
@@ -488,6 +484,22 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 }
 
+
+hacks.clicker = function(){ 
+try {
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[mines]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[repairs]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DD]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DA]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[NITRO]._value_0._value_0.onUserActivatedSupply() 
+
+    
+} catch (error) {
+    
+} 
+
+
+}
 
 
 
