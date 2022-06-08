@@ -639,6 +639,7 @@ State2.addEventListener("click",function(){
 s2p+=1
     
 if(s2p%2==1){
+window.rgt = game.getWorld().physicsScene_0.gravity.z 
 State2.innerText = "ON"
 State2.style.color = "green"
 window.ckp = setInterval(simpleTP,10)
@@ -652,7 +653,8 @@ State2.innerText = "OFF"
 State2.style.color = "red"
 clearInterval(window.NZR)
 clearInterval(window.ntr)   
-
+game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
+game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = window.rgt
 }    
     
 
