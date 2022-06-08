@@ -581,7 +581,7 @@ s1p+=1
 if(s1p%2==1){
 State1.innerText = "ON"
 State1.style.color = "green"
-window.p = setInterval(hacks.autoclicker,30)
+window.p = setInterval(hacks.clicker,30)
 
 }
     
