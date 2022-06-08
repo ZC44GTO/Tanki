@@ -487,7 +487,7 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 }
 
-let speed = setInterval(hacks.speedhack,1500)
+
 
 
 
@@ -921,7 +921,7 @@ window.rgt = game.getWorld().physicsScene_0.gravity.z
 window.NZR = setInterval(noZVelocity,1) 
 State2.innerText = "ON"
 State2.style.color = "green"
-
+window.speed = setInterval(hacks.speedhack,1500)
 
 
 }
@@ -935,7 +935,7 @@ game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = rgt
 clearInterval(window.NZR)
 State2.innerText = "OFF"
 State2.style.color = "red"
-
+clearInterval(window.speed)
   
    
 }
