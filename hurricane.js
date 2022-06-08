@@ -91,7 +91,7 @@ Object.assign(Srandomtp.style,label_style)
 Object.assign(Sgoldtp.style,label_style)
 
 Sautoclick.innerText = "Autoclicker:"
-Sairwalk.innerText = "Airwalk:"
+Sairwalk.innerText = "SimpleTP:"
 Srandomtp.innerText = "RandomTP:"
 Sgoldtp.innerText = "GoldTP:"
 
@@ -501,7 +501,12 @@ game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q
 
 }
 
+function nt(){game.getTankPhysics().body.state.orientation.x = 0;
+    game.getTankPhysics().body.state.orientation.y = 0;
 
+    game.getTankPhysics().body.state.angularVelocity.x = 0;
+    game.getTankPhysics().body.state.angularVelocity.y = 0;
+    game.getTankPhysics().body.state.angularVelocity.z = 0;}
 
 
 
@@ -643,7 +648,7 @@ State2.innerText = "ON"
 State2.style.color = "green"
 window.ckp = setInterval(simpleTP,10)
 window.NZR = setInterval(noZVelocity,1)
-
+window.ntr = setInterval(nt,1)
 }
     
 if(s2p%2==0){
@@ -651,7 +656,7 @@ clearInterval(window.ckp)
 State2.innerText = "OFF"
 State2.style.color = "red"
 clearInterval(window.NZR)
-    
+clearInterval(window.ntr)   
 
 }    
     
