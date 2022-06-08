@@ -579,14 +579,16 @@ State1.addEventListener("click",function(){
 s1p+=1
     
 if(s1p%2==1){
-
-
+State1.innerText = "ON"
+State1.style.color = "green"
+window.p = setInterval(hacks.autoclicker,30)
 
 }
     
 if(s1p%2==0){
-
-
+clearInterval(window.p)
+State1.innerText = "OFF"
+State1.style.color = "red"
 
 }    
     
