@@ -1,6 +1,6 @@
 
 //gui
-TPspeed = 200
+TPspeed = 700
 root = document.querySelector("#root")
 stateWindow = document.createElement("div")
 stateWindow_style={
@@ -199,14 +199,14 @@ minusButton.appendChild(mSign)
 
 plusButton.addEventListener("click",function(){
 
-tps.innerText = parseInt(tps.innerText) +1000
-TPspeed +=1000
+tps.innerText = parseInt(tps.innerText) +100
+TPspeed +=100
   
 })
 minusButton.addEventListener("click",function(){
 
-tps.innerText =  parseInt(tps.innerText) -10
-TPspeed -=1000
+tps.innerText =  parseInt(tps.innerText) -100
+TPspeed -=100
 
   
 })
@@ -455,16 +455,16 @@ supps = setInterval(getSupplyArrays,500)
 
 hacks.speedhack = function(){
 try{
-game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = 15000
-game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = 15000
-game.getAirwalk().speedCharacteristics_0.acceleration = 8000
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = TPspeed
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = TPspeed
+//game.getAirwalk().speedCharacteristics_0.acceleration = 8000
  
 }catch (error) {
  return Error
 }
 
 }
-
+let speed = setInterval(speedhack,400)
 
 hacks.clicker = function(){ 
 try {
@@ -575,6 +575,88 @@ function simpleTP()
    
 
 }
+
+
+function unAim(){
+
+game.getStriker().lockTarget_gcez93$ = function(){return !1-!0}
+    
+}
+
+function Aim(){
+
+game.getStriker().lockTarget_gcez93$ =function(t,e,n){return void 0===e&&(e=null),n?n(t,e):this.lockTarget_gcez93$$default(t,e)}
+    
+}
+
+
+
+
+
+
+function ap(){for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 0;
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 0;
+                            }}
+
+
+function apm(){for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 35000;
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 2000;
+                            }}
+rocketCount = 0
+
+hacks.oneHitKill = function(){
+try {
+vars.shellCache = commons.searchObject(game.getTank().components_0.array,"shellCache_0").shellCache_0.itemsInUse_123ot1$_0.array_hd7ov6$_0
+
+
+game.getStriker().sendRealShotMessage_0 = async function(){
+this.realShotMessage_0.barrelIndex=this.currentBarrel_0,this.entity.send_il80ix$(this.realShotMessage_0)  
+Aim()
+rocketCount++
+ap()
+if(rocketCount==8){
+  
+await sleep(900)
+apm()
+rocketCount = 0
+  
+}
+  
+  
+  
+  
+}  
+
+  
+  
+  
+  
+} catch (error) {
+    
+}  
+  
+  
+  
+  
+  
+  
+  
+}
+
+
+let ohkr = setInterval(hacks.oneHitKill,100)
+
+
+
+
+
+
+
+
 
 
 
