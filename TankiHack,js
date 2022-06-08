@@ -248,8 +248,8 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 let speed = setInterval(hacks.speedhack,1500)
 
-hacks.simpleTP = function(){
- if (KeyPressing.isKeyPressed(87 /*key: W*/) && game.getChatState()==null)
+
+ if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
        
 
@@ -260,14 +260,14 @@ hacks.simpleTP = function(){
         
     }
 
-    if (KeyPressing.isKeyPressed(83 /*key: S*/) && game.getChatState()==null)
+    if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)
     {
         
         game.getTankPhysics().body.state.velocity.x -= 1500 * Math.sin(-game.getCamera().direction);
             game.getTankPhysics().body.state.velocity.y -= 1500 * Math.cos(-game.getCamera().direction);
     }
 
-    if (KeyPressing.isKeyPressed(65 /*key: A*/) && game.getChatState()==null)
+    if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
     {
         
 
@@ -279,7 +279,7 @@ hacks.simpleTP = function(){
         
     }
 
-    if (KeyPressing.isKeyPressed(68 /*key: D*/) && game.getChatState()==null)
+    if (KeyPressing.isKeyPressed(68 /*key: D*/) && commons.getChatState()==null)
     {
         
 
@@ -293,7 +293,7 @@ hacks.simpleTP = function(){
 
 
 
-}
+
 
 
 
@@ -570,7 +570,7 @@ game.getWorld().physicsScene_0.gravity.z  = 0
 
 
 function tpDown(){
-if(game.getChatState()==null){
+if(commons.getChatState()==null){
 game.getTankPhysics().body_xsop3k$_0.state.position.z-=500
 }
 }
