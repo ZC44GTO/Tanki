@@ -567,3 +567,32 @@ function simpleTP()
 
 }
 
+
+
+s1p = 0
+s2p = 0
+s3p = 0
+s4p = 0
+
+
+State1.addEventListener("click",function(){
+s1p+=1
+    
+if(s1p%2==1){
+
+
+
+}
+    
+if(s1p%2==0){
+
+
+
+}    
+    
+
+
+})
+
+
+
