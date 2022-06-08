@@ -1,6 +1,6 @@
 
 //gui
-tpspeed = 200
+TPspeed = 200
 root = document.querySelector("#root")
 stateWindow = document.createElement("div")
 stateWindow_style={
@@ -92,8 +92,6 @@ Object.assign(Sgoldtp.style,label_style)
 
 Sautoclick.innerText = "Autoclicker:"
 Sairwalk.innerText = "SimpleTP:"
-Srandomtp.innerText = "RandomTP:"
-Sgoldtp.innerText = "GoldTP:"
 
 
 Sautoclick.style.bottom = "64%"
@@ -102,10 +100,7 @@ Srandomtp.style.bottom = "36%"
 Sgoldtp.style.bottom = "22%"
 
 stateWindow.appendChild(Sautoclick)
-stateWindow.appendChild(Sairwalk)
-stateWindow.appendChild(Srandomtp)
-stateWindow.appendChild(Sgoldtp)
-
+stateWindow.appendChild(SsimpleTP)
 
 
 
@@ -121,17 +116,12 @@ right:"0%"
 
 State1 = document.createElement("span")
 State2 = document.createElement("span")
-State3 = document.createElement("span")
-State4 = document.createElement("span")
 
 
 
 
 Object.assign(State1.style,onOff_style)
 Object.assign(State2.style,onOff_style)
-Object.assign(State3.style,onOff_style)
-Object.assign(State4.style,onOff_style)
-
 
 
 
@@ -139,8 +129,6 @@ Object.assign(State4.style,onOff_style)
 
 State1.innerText = "OFF"
 State2.innerText = "OFF"
-State3.innerText = "OFF"
-State4.innerText = "OFF"
 
 
 
@@ -149,16 +137,12 @@ State4.innerText = "OFF"
 
 stateWindow.appendChild(State1)
 stateWindow.appendChild(State2)
-stateWindow.appendChild(State3)
-stateWindow.appendChild(State4)
 
 
 
 
 State1.style.bottom = "64%"
 State2.style.bottom = "50%"
-State3.style.bottom = "36%"
-State4.style.bottom = "22%"
 
 
 
@@ -168,7 +152,7 @@ tps = document.createElement("span")
 plusButton = document.createElement("button")
 minusButton = document.createElement("button")
 
-tps.innerText = tpspeed
+tps.innerText = TPspeed
 
 tps.style.position = "absolute"
 tps.style.color = "white"
@@ -508,12 +492,23 @@ function nt(){game.getTankPhysics().body.state.orientation.x = 0;
     game.getTankPhysics().body.state.angularVelocity.y = 0;
     game.getTankPhysics().body.state.angularVelocity.z = 0;}
 
+function noZVelocity(){
 
+
+try {
+game.getTankPhysics().body_xsop3k$_0.state.velocity.z = 0
+game.getWorld().physicsScene_0.gravity.z  = 0
+
+} catch (error) {
+    
+}
+    
+}
 
 function simpleTP()
 
  {
-  TPspeed = parseInt(tps.innerText)
+
 
  
  
