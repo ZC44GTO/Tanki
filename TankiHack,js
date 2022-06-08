@@ -159,6 +159,77 @@ State2.style.bottom = "50%"
 State3.style.bottom = "36%"
 State4.style.bottom = "22%"
 
+
+
+tps = document.createElement("span")
+
+
+plusButton = document.createElement("button")
+minusButton = document.createElement("button")
+
+tps.innerText = 150
+
+tps.style.position = "absolute"
+tps.style.color = "white"
+tps.style.bottom = "10%"
+tps.style.right = "46%"
+tps.style.fontSize = "18px"
+
+stateWindow.appendChild(tps)
+
+
+pmb_style = {
+width: '35px',
+height: '25px',
+position: 'absolute',
+borderRadius: '100px',
+bottom: '10%',
+}
+
+
+
+
+Object.assign(plusButton.style,pmb_style)
+Object.assign(minusButton.style,pmb_style)
+
+minusButton.style.backgroundColor="red"
+plusButton.style.backgroundColor="green"
+
+
+minusButton.style.left = "14%"
+plusButton.style.right = "14%"
+
+stateWindow.appendChild(plusButton)
+stateWindow.appendChild(minusButton)
+
+pSign = document.createElement("span")
+mSign = document.createElement("span")
+
+pSign.innerText = "+"
+mSign.innerText = "-"
+
+
+plusButton.appendChild(pSign)
+minusButton.appendChild(mSign)
+
+
+
+
+
+plusButton.addEventListener("click",function(){
+
+tps.innerText = parseInt(tps.innerText) +10
+
+  
+})
+minusButton.addEventListener("click",function(){
+
+tps.innerText =  parseInt(tps.innerText) -10
+
+  
+})
+
+
 //gui end
 
 
@@ -421,7 +492,7 @@ let speed = setInterval(hacks.speedhack,1500)
 
 
 
-let TPspeed = 200
+ TPspeed = parseInt(tps.innerText)
 function simpleTP()
  {if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
