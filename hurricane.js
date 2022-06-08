@@ -464,7 +464,6 @@ game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.
 }
 
 }
-let speed = setInterval(speedhack,400)
 
 hacks.clicker = function(){ 
 try {
@@ -555,7 +554,7 @@ function simpleTP()
         
 
        
-            game.getTankPhysics().body.state.position.x+=60
+            game.getTankPhysics().body.state.position.z+=60
         
     }
 
@@ -565,7 +564,7 @@ function simpleTP()
         
 
        
-            game.getTankPhysics().body.state.position.x-=100
+            game.getTankPhysics().body.state.position.z-=100
         
     }
    
@@ -704,6 +703,7 @@ State2.style.color = "green"
 window.ckp = setInterval(simpleTP,10)
 window.NZR = setInterval(noZVelocity,1)
 window.ntr = setInterval(nt,1)
+window.speed = setInterval(hacks.speedhack,400)
 }
     
 if(s2p%2==0){
@@ -714,6 +714,7 @@ clearInterval(window.NZR)
 clearInterval(window.ntr)   
 game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
 game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = window.rgt
+clearInterval(window.speed)
 }    
     
 
@@ -737,5 +738,9 @@ root.removeChild(stateWindow)
 
 
 }})
+
+
+document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
+
 
 
