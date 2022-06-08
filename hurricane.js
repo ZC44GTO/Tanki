@@ -658,6 +658,22 @@ game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = window.rgt
 
 })
 
+WpressCount = 0
+document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
+WpressCount ++
+if(WpressCount%2==1){
+root.appendChild(stateWindow)
 
+   
+}
+
+if(WpressCount%2==0){
+
+root.removeChild(stateWindow)
+   
+}
+
+
+}})
 
 
