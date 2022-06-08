@@ -248,23 +248,23 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 let speed = setInterval(hacks.speedhack,1500)
 
-
- if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
+hacks.simpleTP = function()
+ {if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
        
 
         
             
-            game.getTankPhysics().body.state.velocity.x += 1500 * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.velocity.y += 1500 * Math.cos(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.x += 400 * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y += 400 * Math.cos(-game.getCamera().direction);
         
     }
 
     if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)
     {
         
-        game.getTankPhysics().body.state.velocity.x -= 1500 * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.velocity.y -= 1500 * Math.cos(-game.getCamera().direction);
+        game.getTankPhysics().body.state.position.x -= 400 * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y -= 400 * Math.cos(-game.getCamera().direction);
     }
 
     if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
@@ -274,8 +274,8 @@ let speed = setInterval(hacks.speedhack,1500)
        
            
 
-            game.getTankPhysics().body.state.x -= 1500 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.y -= 1500 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x -= 400 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y -= 400 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
         
     }
 
@@ -284,15 +284,12 @@ let speed = setInterval(hacks.speedhack,1500)
         
 
        
-            game.getTankPhysics().body.state.x += 1500 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.y += 1500 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x +=400 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y += 400 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
         
     }
 
-
-
-
-
+}
 
 
 
