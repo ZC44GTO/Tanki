@@ -251,6 +251,10 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 let speed = setInterval(hacks.speedhack,1500)
 
+
+
+
+let TPspeed = 200
 function simpleTP()
  {if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
     {
@@ -258,16 +262,16 @@ function simpleTP()
 
         
             
-            game.getTankPhysics().body.state.position.x += 400 * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.position.y += 400 * Math.cos(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.x += TPspeed * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-game.getCamera().direction);
         
     }
 
     if (KeyPressing.isKeyPressed(83 /*key: S*/) && commons.getChatState()==null)
     {
         
-        game.getTankPhysics().body.state.position.x -= 400 * Math.sin(-game.getCamera().direction);
-            game.getTankPhysics().body.state.position.y -= 400 * Math.cos(-game.getCamera().direction);
+        game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-game.getCamera().direction);
+            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-game.getCamera().direction);
     }
 
     if (KeyPressing.isKeyPressed(65 /*key: A*/) && commons.getChatState()==null)
@@ -277,8 +281,8 @@ function simpleTP()
        
            
 
-            game.getTankPhysics().body.state.position.x -= 400 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.position.y -= 400 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x -= TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y -= TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
         
     }
 
@@ -287,8 +291,8 @@ function simpleTP()
         
 
        
-            game.getTankPhysics().body.state.position.x +=400 * Math.sin(-(game.getCamera().direction - Math.PI / 2));
-            game.getTankPhysics().body.state.position.y += 400 * Math.cos(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.x +=TPspeed * Math.sin(-(game.getCamera().direction - Math.PI / 2));
+            game.getTankPhysics().body.state.position.y += TPspeed * Math.cos(-(game.getCamera().direction - Math.PI / 2));
         
     }
 
@@ -715,9 +719,9 @@ clearInterval(window.gg)
   
   
   
-  
-  
-document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
+ 
+ 
+document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
 
 document.addEventListener('keydown',   function (event) { if (event.key === 'f'){tpDown()}})
 
