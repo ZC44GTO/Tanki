@@ -96,11 +96,9 @@ Sairwalk.innerText = "SimpleTP:"
 
 Sautoclick.style.bottom = "64%"
 Sairwalk.style.bottom = "50%"
-Srandomtp.style.bottom = "36%"
-Sgoldtp.style.bottom = "22%"
 
 stateWindow.appendChild(Sautoclick)
-stateWindow.appendChild(SsimpleTP)
+stateWindow.appendChild(Sairwalk)
 
 
 
