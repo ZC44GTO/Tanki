@@ -1,6 +1,6 @@
 
 //gui
-TPspeed = 700
+TPspeed = 100
 root = document.querySelector("#root")
 stateWindow = document.createElement("div")
 stateWindow_style={
@@ -199,14 +199,14 @@ minusButton.appendChild(mSign)
 
 plusButton.addEventListener("click",function(){
 
-tps.innerText = parseInt(tps.innerText) +100
-TPspeed +=100
+tps.innerText = parseInt(tps.innerText) +30
+TPspeed +=30
   
 })
 minusButton.addEventListener("click",function(){
 
-tps.innerText =  parseInt(tps.innerText) -100
-TPspeed -=100
+tps.innerText =  parseInt(tps.innerText) -30
+TPspeed -=30
 
   
 })
