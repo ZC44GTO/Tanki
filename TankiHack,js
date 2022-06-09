@@ -229,7 +229,7 @@ tps.innerText =  parseInt(tps.innerText) -20
   
 })
 */
-root.removeChild(stateWindow)
+//root.removeChild(stateWindow)
 //gui end
 
 
