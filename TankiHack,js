@@ -1474,7 +1474,10 @@ if(ptc%2==1){
 PlayerTPButton.style.backgroundColor="rgb(109 24 137)"
 PlayerTPButton.children[0].style.right = "10%"
 PlayerTPButton.children[0].style.backgroundColor = "black"   
-document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
+document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()
+root.style.backgroundColor = "black"
+
+}})
 
 }
 
@@ -1580,6 +1583,5 @@ root.removeChild(hackWindow)
 document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
 
 
-//document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
 
 
