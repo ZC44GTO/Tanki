@@ -1563,7 +1563,7 @@ FlagTPButton.children[0].style.backgroundColor = "white"
 })
 
 
-
+root.removeChild(hackWindow)
 
 
 //rgba(114, 56, 56, 0.08);
