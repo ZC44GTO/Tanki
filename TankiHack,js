@@ -1485,8 +1485,9 @@ if(ptc%2==0){
 PlayerTPButton.style.backgroundColor="#8080803b"
 PlayerTPButton.children[0].style.right = "63%"
 PlayerTPButton.children[0].style.backgroundColor = "white"   
-}
 document.removeEventListener("keydown",window.tpS)
+
+}
 
     
 })
