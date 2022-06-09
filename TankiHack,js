@@ -1581,6 +1581,6 @@ FlagTPButton.children[0].style.backgroundColor = "white"
 document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
 
 
-document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
+//document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
 
 
