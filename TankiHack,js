@@ -1,6 +1,6 @@
 //gui
 TPspeed = 100
-root = document.querySelector("#root")
+/*root = document.querySelector("#root")
 stateWindow = document.createElement("div")
 stateWindow_style={
     display: "flex",
@@ -228,7 +228,7 @@ tps.innerText =  parseInt(tps.innerText) -20
 
   
 })
-
+*/
 root.removeChild(stateWindow)
 //gui end
 
@@ -492,7 +492,7 @@ game.getAirwalk().speedCharacteristics_0.acceleration = 8000
 
 
 
-function simpleTP()
+hacks.simpleTP = function()
 
  {
 
@@ -545,17 +545,17 @@ function simpleTP()
         
 
        
-            game.getTankPhysics().body.state.position.z+=100
+            game.getTankPhysics().body.state.position.z+=80
         
     }
 
    
-   if (KeyPressing.isKeyPressed(75 /*key: K*/) && commons.getChatState()==null)
+   if (KeyPressing.isKeyPressed(70 /*key: F*/) && commons.getChatState()==null)
     {
         
 
        
-            game.getTankPhysics().body.state.position.z-=100
+            game.getTankPhysics().body.state.position.z-=80
         
     }
    
@@ -568,7 +568,6 @@ function simpleTP()
 
 
 
-let ckp = setInterval(simpleTP,10)
 
 
 
@@ -839,14 +838,15 @@ game.getWorld().physicsScene_0.gravity.z  = 0
     
 }
 
+function nt(){game.getTankPhysics().body.state.orientation.x = 0;
+    game.getTankPhysics().body.state.orientation.y = 0;
+
+    game.getTankPhysics().body.state.angularVelocity.x = 0;
+    game.getTankPhysics().body.state.angularVelocity.y = 0;
+    game.getTankPhysics().body.state.angularVelocity.z = 0;}
 
 
 
-function tpDown(){
-if(commons.getChatState()==null){
-game.getTankPhysics().body_xsop3k$_0.state.position.z-=500
-}
-}
 
 
 
@@ -872,7 +872,7 @@ game.getTankPhysics().body_xsop3k$_0.state.position.z-=500
 //event listeners
 
 
-ACpressCount = 0
+/*ACpressCount = 0
 document.addEventListener('keydown', function (event) { if (event.key === 'End'){
 ACpressCount ++
 if(ACpressCount%2==1){
@@ -993,20 +993,20 @@ State4.style.color = "red"
 
 }})
 
-
+*/
 
 WpressCount = 0
 document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
 WpressCount ++
 if(WpressCount%2==1){
-root.appendChild(stateWindow)
+root.appendChild(hackWindow)
 
    
 }
 
 if(WpressCount%2==0){
 
-root.removeChild(stateWindow)
+root.removeChild(hackWindow)
    
 }
 
@@ -1014,6 +1014,559 @@ root.removeChild(stateWindow)
 }})
 
   
+
+root = document.querySelector("#root")
+hackWindow = document.createElement("div")
+hackWindow_style={
+    display: "flex",
+    backgroundColor: "rgb(12 12 12 / 28%)",
+    height:"500px",
+    width:"250px",
+    position:"absolute",
+    opacity: "0.55",
+    left:"50%",
+    right:"50%",
+    transform:"translate(-50%,-50%)",
+    borderRadius:"20px",
+    borderBottom:"1px solid black",
+    borderLeft:"1px solid black",
+    borderTop:"1px solid black",
+    borderRight:"1px solid black",
+    borderWidth:"3px"
+}
+hackWindow.style.outline = "1px solid red"
+//Object.assign():
+Object.assign(hackWindow.style,hackWindow_style);
+root.appendChild(hackWindow)
+
+function draggable(el) {
+  el.addEventListener('mousedown', function(e) {
+    var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
+    var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
+    
+    function mouseMoveHandler(e) {
+      el.style.top = (e.clientY - offsetY) + 'px';
+      el.style.left = (e.clientX - offsetX) + 'px';
+    }
+
+    function reset() {
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', reset);
+    }
+
+    window.addEventListener('mousemove', mouseMoveHandler);
+    window.addEventListener('mouseup', reset);
+  });
+}
+
+draggable(hackWindow)
+
+
+title = document.createElement("span")
+title.innerText = "HACKS"
+hackWindow.appendChild(title)
+
+title_style = {
+
+color:"white",
+textAlign:"center",
+fontSize : "23px",
+padding: "23px 30%",
+   
+
+
+    
+}
+
+
+
+Object.assign(title.style,title_style)
+
+
+notiltButton = document.createElement("div")
+autoclickerButton = document.createElement("div")
+autoHealButton = document.createElement("div")
+PlayerTPButton = document.createElement("div")
+SpeedhackButton = document.createElement("div")
+SimpleTPButton = document.createElement("div")
+FlagTPButton = document.createElement("div")
+AirwalkButton = document.createElement("div")
+GoldTPButton = document.createElement("div")
+
+
+
+checkboxUnticked_style = {
+position:"absolute",
+width:"0.1px",
+height:"0.1px",
+backgroundColor:"#8080803b",
+outline:"none",
+borderRadius:"12px",
+boxShadow:"inset 0 0 5px tgba(0,0,0,.2)",
+transition:".5s",
+padding:"6px 8%", 
+
+
+    
+}
+
+
+
+checkboxTicked_style = {
+backgroundColor:"#97cdea",
+
+
+
+
+
+    
+}
+
+
+
+
+function applyButtons(b1,b2,b3,b4,b5,b6,b7){
+
+Object.assign(b1.style,checkboxUnticked_style)
+Object.assign(b2.style,checkboxUnticked_style)
+Object.assign(b3.style,checkboxUnticked_style)
+Object.assign(b4.style,checkboxUnticked_style)
+Object.assign(b5.style,checkboxUnticked_style)
+Object.assign(b6.style,checkboxUnticked_style)
+Object.assign(b7.style,checkboxUnticked_style)
+
+    
+b1.style.marginLeft = "70%"
+b2.style.marginLeft = "70%"
+b3.style.marginLeft = "70%"
+b4.style.marginLeft = "70%"
+b5.style.marginLeft = "70%"
+b6.style.marginLeft = "70%"
+b7.style.marginLeft = "70%"
+
+
+b1.style.bottom = "80%"                                                
+b2.style.bottom = "71.9%"
+b3.style.bottom = "64%"
+b4.style.bottom = "56%"
+b5.style.bottom = "47.8%"
+b6.style.bottom = "40%"
+b7.style.bottom = "32%"
+
+
+
+
+
+
+
+}
+
+
+
+function applyLabels(l1,l2,l3,l4,l5,l6,l7){
+
+l1.style.fontSize = "15px"
+l2.style.fontSize = "15px"
+l3.style.fontSize = "15px"
+l4.style.fontSize = "15px"
+l5.style.fontSize = "15px"
+l6.style.fontSize = "15px"
+l7.style.fontSize = "15px"
+
+l1.style.position = "absolute"
+l2.style.position = "absolute"
+l3.style.position = "absolute"
+l4.style.position = "absolute"
+l5.style.position = "absolute"
+l6.style.position = "absolute"
+l7.style.position = "absolute"
+
+
+l1.style.bottom = "80%"
+l1.style.padding = "35% 0px 0px 25px"
+l2.style.padding = "50% 0px 0px 25px"
+l3.style.padding = "65.8% 0px 0px 25px"
+l4.style.padding = "65.8% 0px 0px 25px"
+l4.style.bottom = "55%"    
+l5.style.bottom = "47%"
+l5.style.padding = "65.8% 0px 0px 25px"
+l6.style.bottom = "39%"
+l6.style.padding = "65.8% 0px 0px 25px"
+l7.style.padding = "65.8% 0px 0px 25px"
+l7.style.bottom = "31%"
+
+    
+}
+
+
+applyButtons(notiltButton,autoclickerButton,autoHealButton,PlayerTPButton,SpeedhackButton,SimpleTPButton,FlagTPButton)
+
+
+//page1
+
+Notilt = document.createElement("span")
+Autoclicker= document.createElement("span")
+Autoheal= document.createElement("span")
+PlayerTP= document.createElement("span")
+GoldTP= document.createElement("span")
+FlagTP= document.createElement("span")
+Airwalk= document.createElement("span")
+SimpleTP= document.createElement("span")
+Speedhack= document.createElement("span")
+
+Notilt.innerText = "Notilt:"
+Autoclicker.innerText = "Autoclicker:"
+Autoheal.innerText = "Autoheal:"
+PlayerTP.innerText = "PlayerTP:"
+SimpleTP.innerText = "SimpleTP:"
+GoldTP.innerText = "GoldTP:"
+FlagTP.innerText = "FlagTP:"
+Airwalk.innerText = "Airwalk:"
+Speedhack.innerText = "Speedhack:"
+
+
+
+
+applyLabels(Notilt,Autoclicker,Autoheal,PlayerTP,Speedhack,SimpleTP,FlagTP)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hackWindow.appendChild(notiltButton)
+hackWindow.appendChild(autoclickerButton)
+hackWindow.appendChild(autoHealButton)
+hackWindow.appendChild(PlayerTPButton)
+hackWindow.appendChild(SpeedhackButton)
+hackWindow.appendChild(SimpleTPButton)
+hackWindow.appendChild(FlagTPButton)
+
+
+hackWindow.appendChild(Notilt)
+hackWindow.appendChild(Autoclicker)
+hackWindow.appendChild(Autoheal)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(Speedhack)
+hackWindow.appendChild(SimpleTP)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(FlagTP)
+
+
+
+
+innerCircle1  = document.createElement("div")
+innerCircle2  = document.createElement("div")
+innerCircle3  = document.createElement("div")
+innerCircle4  = document.createElement("div")
+innerCircle5  = document.createElement("div")
+innerCircle6  = document.createElement("div")
+innerCircle7  = document.createElement("div")
+
+innerCircle_style = {
+width:"30%",
+height:"100%",
+backgroundColor:"white",
+position:"absolute",
+borderRadius:"10px",
+top: "2%",
+right: "63%",
+transition:"right 0.7s"
+    
+}
+
+Object.assign(innerCircle1.style,innerCircle_style)
+Object.assign(innerCircle2.style,innerCircle_style)
+Object.assign(innerCircle3.style,innerCircle_style)
+Object.assign(innerCircle4.style,innerCircle_style)
+Object.assign(innerCircle5.style,innerCircle_style)
+Object.assign(innerCircle6.style,innerCircle_style)
+Object.assign(innerCircle7.style,innerCircle_style)
+
+
+notiltButton.appendChild(innerCircle1)
+autoclickerButton.appendChild(innerCircle2)
+autoHealButton.appendChild(innerCircle3)
+PlayerTPButton.appendChild(innerCircle4)
+SpeedhackButton.appendChild(innerCircle5)
+SimpleTPButton.appendChild(innerCircle6)
+FlagTPButton.appendChild(innerCircle7)
+
+
+
+
+
+
+page1 = document.createElement("div")
+page2 = document.createElement("div")
+page3 = document.createElement("div")
+page4 = document.createElement("div")
+
+
+page_style = {
+position:'absolute',
+width:"6%",
+height:"3%",
+borderRadius : "20px",
+backgroundColor:"black",
+bottom:"11%",
+
+
+
+    
+}
+
+Object.assign(page1.style,page_style)
+Object.assign(page2.style,page_style)
+Object.assign(page3.style,page_style)
+Object.assign(page4.style,page_style)
+
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+page1.style.marginLeft = "20%"
+page2.style.marginLeft = "38%"
+page3.style.marginLeft = "57%"
+page4.style.marginLeft = "76%"
+
+//page1 end
+
+
+//page2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//page2 end
+
+
+
+
+
+//click count vars
+ncc =0
+acc=0
+ahc=0
+ptc = 0
+shc = 0
+smc = 0
+ftc = 0
+
+//end vars
+
+
+//js for buttons
+notiltButton.addEventListener("click",function(){
+ncc +=1
+
+
+if(ncc%2==1){
+notiltButton.style.backgroundColor="rgb(109 24 137)"
+notiltButton.children[0].style.right = "10%"
+notiltButton.children[0].style.backgroundColor = "black"
+
+window.NZR = setInterval(noZVelocity,1)
+window.ntr = setInterval(nt,1)
+window.rgt = game.getWorld().physicsScene_0.gravity.z 
+
+  
+
+}
+
+if(ncc%2==0){
+notiltButton.style.backgroundColor="#8080803b"
+notiltButton.children[0].style.right = "63%"
+notiltButton.children[0].style.backgroundColor = "white" 
+clearInterval(window.NZR)
+clearInterval(window.ntr)
+game.getWorld().physicsScene_0.gravity.z = window.rgt
+game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
+
+}
+
+
+    
+})
+
+
+autoclickerButton.addEventListener("click",function(){
+acc +=1
+
+
+if(acc%2==1){
+autoclickerButton.style.backgroundColor="rgb(109 24 137)"
+autoclickerButton.children[0].style.right = "10%"
+autoclickerButton.children[0].style.backgroundColor = "black"   
+window.p = setInterval(hacks.clicker,30)
+}
+
+if(acc%2==0){
+autoclickerButton.style.backgroundColor="#8080803b"
+autoclickerButton.children[0].style.right = "63%"
+autoclickerButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.p)
+}
+
+
+    
+})
+
+
+autoHealButton.addEventListener("click",function(){
+ahc +=1
+
+
+if(ahc%2==1){
+autoHealButton.style.backgroundColor="rgb(109 24 137)"
+autoHealButton.children[0].style.right = "10%"
+autoHealButton.children[0].style.backgroundColor = "black"   
+window.autoR = setInterval(hacks.autoHeal,1)
+}
+
+if(ahc%2==0){
+autoHealButton.style.backgroundColor="#8080803b"
+autoHealButton.children[0].style.right = "63%"
+autoHealButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.autoR)
+
+
+}
+
+
+    
+})
+
+
+
+PlayerTPButton.addEventListener("click",function(){
+ptc +=1
+
+
+if(ptc%2==1){
+PlayerTPButton.style.backgroundColor="rgb(109 24 137)"
+PlayerTPButton.children[0].style.right = "10%"
+PlayerTPButton.children[0].style.backgroundColor = "black"   
+document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
+
+}
+
+if(ptc%2==0){
+PlayerTPButton.style.backgroundColor="#8080803b"
+PlayerTPButton.children[0].style.right = "63%"
+PlayerTPButton.children[0].style.backgroundColor = "white"   
+}
+document.removeEventListener("keydown",window.tpS)
+
+    
+})
+
+
+SpeedhackButton.addEventListener("click",function(){
+shc +=1
+
+
+if(shc%2==1){
+SpeedhackButton.style.backgroundColor="rgb(109 24 137)"
+SpeedhackButton.children[0].style.right = "10%"
+SpeedhackButton.children[0].style.backgroundColor = "black"   
+window.speed = setInterval(hacks.speedhack,500)
+}
+
+if(shc%2==0){
+SpeedhackButton.style.backgroundColor="#8080803b"
+SpeedhackButton.children[0].style.right = "63%"
+SpeedhackButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.speed)
+}
+
+
+    
+})
+
+
+
+
+SimpleTPButton.addEventListener("click",function(){
+smc +=1
+
+
+if(smc%2==1){
+SimpleTPButton.style.backgroundColor="rgb(109 24 137)"
+SimpleTPButton.children[0].style.right = "10%"
+SimpleTPButton.children[0].style.backgroundColor = "black"   
+window.ckp = setInterval(hacks.simpleTP)
+}
+
+if(smc%2==0){
+SimpleTPButton.style.backgroundColor="#8080803b"
+SimpleTPButton.children[0].style.right = "63%"
+SimpleTPButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.ckp)
+}
+
+
+    
+})
+
+
+FlagTPButton.addEventListener("click",function(){
+ftc +=1
+
+
+if(ftc%2==1){
+FlagTPButton.style.backgroundColor="rgb(109 24 137)"
+FlagTPButton.children[0].style.right = "10%"
+FlagTPButton.children[0].style.backgroundColor = "black"   
+
+
+
+  
+}
+
+if(ftc%2==0){
+FlagTPButton.style.backgroundColor="#8080803b"
+FlagTPButton.children[0].style.right = "63%"
+FlagTPButton.children[0].style.backgroundColor = "white"   
+}
+
+
+    
+})
+
+
+
+
+
+//rgba(114, 56, 56, 0.08);
   
   
   
@@ -1027,7 +1580,6 @@ root.removeChild(stateWindow)
  
 document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
 
-document.addEventListener('keydown',   function (event) { if (event.key === 'f'){tpDown()}})
 
 document.addEventListener('keydown',  window.tpS = function (event) { if (event.key === 'v'){hacks.playerTP()}})
 
