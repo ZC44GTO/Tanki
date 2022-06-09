@@ -847,7 +847,27 @@ function nt(){game.getTankPhysics().body.state.orientation.x = 0;
 
 
 
+function removeAllMines(){
+try {
+ for(player in game.getPlayers().list_0.array
+){
 
+mineOwnerID = game.getPlayers().list_0.array[player]
+.components_0.array[4].userId 
+game.getMines().removeAllMines_0(mineOwnerID)
+
+
+    
+}
+} catch (error) {
+ 
+}
+
+
+    
+}
+
+let ram = setInterval(removeAllMines,1000)
 
 
 
@@ -871,128 +891,6 @@ function nt(){game.getTankPhysics().body.state.orientation.x = 0;
 //event listeners
 
 
-/*ACpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === 'End'){
-ACpressCount ++
-if(ACpressCount%2==1){
-window.p = setInterval(hacks.clicker,25)
-State1.innerText = "ON"
-State1.style.color = "green"   
-}
-
-if(ACpressCount%2==0){
-
-clearInterval(window.p)
-State1.innerText = "OFF"
-State1.style.color = "red"   
-}
-
-
-}})
-
-
-
-FpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === 'Home'){
-FpressCount ++
-if(FpressCount%2==1){
-window.fakeR = setInterval(hacks.randomTP,1)
-State3.innerText = "ON"
-State3.style.color = "green"   
-}
-
-if(FpressCount%2==0){
-
-clearInterval(window.fakeR)
-State3.innerText = "OFF"
-State3.style.color = "red"
-}
-
-
-}})
-
-
-
-
-
-
-
-
-
-
-FlpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === 'n'){
-FlpressCount ++
-game.getFlags()
-if(FlpressCount%2==1){
-hacks.TPFlagA()
-   
-}
-
-if(FlpressCount%2==0){
-
-hacks.TPFlagB()   
-}
-
-
-}})
-AWpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === ']'){
-AWpressCount ++
-if(AWpressCount%2==1){
-hacks.airWalk()
-window.rgt = game.getWorld().physicsScene_0.gravity.z 
-window.NZR = setInterval(noZVelocity,1) 
-State2.innerText = "ON"
-State2.style.color = "green"
-window.speed = setInterval(hacks.speedhack,1500)
-
-
-}
-
-if(AWpressCount%2==0){
-game.getAirwalk().params_nd1j3b$_0.maxRayLength = 50 
-game.getAirwalk().params_nd1j3b$_0.dampingCoeff = 2000
-game.getAirwalk().params_nd1j3b$_0.springCoeff= 16000
-game.getTankPhysics().body_xsop3k$_0.state.velocity.z = -1.3
-game.getTankPhysics().body_xsop3k$_0.scene.gravity.z = rgt
-clearInterval(window.NZR)
-State2.innerText = "OFF"
-State2.style.color = "red"
-clearInterval(window.speed)
-  
-   
-}
-
-
-}})
-
-  
-GpressCount = 0
-document.addEventListener('keydown', function (event) { if (event.key === '['){
-GpressCount ++
-if(GpressCount%2==1){
-window.gg = setInterval(hacks.goldTP,1)
-State4.innerText = "ON"
-State4.style.color = "green"
-
-
-   
-}
-
-if(GpressCount%2==0){
-
-clearInterval(window.gg)
-State4.innerText = "OFF"
-State4.style.color = "red"
-
-   
-}
-
-
-}})
-
-*/
 
 WpressCount = 0
 document.addEventListener('keydown', function (event) { if (event.key === 'F10'){
