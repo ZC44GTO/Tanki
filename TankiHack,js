@@ -283,7 +283,6 @@ speedhack = null
 class vars{
 FlagA = null
 FlagB = null
-target = null
 tpName = null  
 rocketCount = null
 shellCache = null
@@ -566,7 +565,18 @@ hacks.simpleTP = function()
 }
 
 
+function getTarget(){
+try {
+enemyID = game.getStriker().playerIdQuery_0.playerId 
+target = game.getStriker().getPreferredTarget_0(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position
+ 
+} catch (error) {
+ 
+}
+}
 
+ 
+let gtr = setInterval(getTarget,100)
 
 
 
