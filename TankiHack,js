@@ -797,9 +797,7 @@ if(rocketCount==8){
   
 await sleep(900)
 rocketCount = 0
-vars.shellCache.at(i).components_0.array.at(1).position.x = target.x
-                                vars.shellCache.at(i).components_0.array.at(1).position.y = target.y
-                                vars.shellCache.at(i).components_0.array.at(1).position.z = target.z  
+apm()
 }
   
   
