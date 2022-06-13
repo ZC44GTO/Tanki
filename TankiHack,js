@@ -755,20 +755,20 @@ game.getStriker().lockTarget_gcez93$ =function(t,e,n){return void 0===e&&(e=null
 
 
 
-function ap(){for (let i = 0; i < vars.shellCache.length; i++)
-                            {try {
+function ap(){try {
+{for (let i = 0; i < vars.shellCache.length; i++)
+                            {
 vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 0;
                                 vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 0;
                                 vars.shellCache.at(i).components_0.array.at(1).direction.x = 0;
                                 vars.shellCache.at(i).components_0.array.at(1).direction.y = 0;
-                                vars.shellCache.at(i).components_0.array.at(1).direction.z = 0;    
-} catch (error) {
-    
-}
-                            
+                                vars.shellCache.at(i).components_0.array.at(1).direction.z = 0;                          
                                 
 
-                            }}
+                            }    
+} catch (error) {
+    
+}}
 
 
 function apm(){for (let i = 0; i < vars.shellCache.length; i++)
