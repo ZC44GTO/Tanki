@@ -893,7 +893,43 @@ game.getMines().removeAllMines_0(mineOwnerID)
 
 
 
+window.mineDecluster= function(){
+for(let i=0;i<game.getWorld().triggers_0.triggers_0.array.length;i++){
 
+try {
+parentMine = game.getWorld().triggers_0.triggers_0.array[i]
+
+childMine = game.getWorld().triggers_0.triggers_0.array[i+1]
+
+if(childMine.position.x == parentMine.position.x ||childMine.position.y == parentMine.position.y){
+
+childMine.removeMine_0()
+
+    
+}
+
+    
+} catch (error) {
+    
+}
+
+
+    
+}
+
+}
+document.addEventListener("keydown",function(e){
+
+if(e.key == "m"){
+
+mineDecluster()
+    
+}
+
+
+
+    
+})
 
 
 
