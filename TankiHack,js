@@ -626,7 +626,6 @@ try {
 } catch (error) {
      
  }}
-let ru = setInterval(hacks.rapidUpdate,10)
 
 
 hacks.TPFlagA = function(){
@@ -890,7 +889,6 @@ game.getMines().removeAllMines_0(mineOwnerID)
     
 }
 
-let ram = setInterval(removeAllMines,1000)
 
 
 
@@ -1140,7 +1138,7 @@ Autoheal.innerText = "Autoheal:"
 PlayerTP.innerText = "PlayerTP:"
 SimpleTP.innerText = "SimpleTP:"
 GoldTP.innerText = "GoldTP:"
-FlagTP.innerText = "FlagTP:"
+FlagTP.innerText = "Rapid Update:"
 Airwalk.innerText = "Airwalk:"
 Speedhack.innerText = "Speedhack:"
 
@@ -1470,8 +1468,8 @@ if(ftc%2==1){
 FlagTPButton.style.backgroundColor="rgb(109 24 137)"
 FlagTPButton.children[0].style.right = "10%"
 FlagTPButton.children[0].style.backgroundColor = "black"   
-
-
+window.ru = setInterval(hacks.rapidUpdate,10)
+window.ram = setInterval(removeAllMines,1000)
 
   
 }
@@ -1480,6 +1478,12 @@ if(ftc%2==0){
 FlagTPButton.style.backgroundColor="#8080803b"
 FlagTPButton.children[0].style.right = "63%"
 FlagTPButton.children[0].style.backgroundColor = "white"   
+clearInterval(window.ram)
+clearInterval(window.ru)
+
+
+
+
 }
 
 
