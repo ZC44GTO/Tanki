@@ -887,9 +887,6 @@ game.getMines().removeAllMines_0(mineOwnerID)
 }
 
 
-
-
-
 window.mineDecluster= function(){
 for(let i=0;i<game.getWorld().triggers_0.triggers_0.array.length;i++){
 
@@ -898,7 +895,7 @@ parentMine = game.getWorld().triggers_0.triggers_0.array[i]
 
 childMine = game.getWorld().triggers_0.triggers_0.array[i+1]
 
-if(childMine.position.x == parentMine.position.x ||childMine.position.y == parentMine.position.y){
+if(childMine.position.x-parentMine.position.x==10||childMine.position.x==parentMine.position.x||childMine.position.x-parentMine.position.x==-10||childMine.position.y-parentMine.position.y==10||childMine.position.y==parentMine.position.y||childMine.position.y-parentMine.position.y==-10 ){
 
 childMine.removeMine_0()
 
@@ -915,6 +912,10 @@ childMine.removeMine_0()
 }
 
 }
+
+
+
+
 document.addEventListener("keydown",function(e){
 
 if(e.key == "m"){
@@ -931,11 +932,39 @@ mineDecluster()
 
 
 
+function removeMyMines(){for(key in game.getWorld().triggers_0.triggers_0.array){
+
+try {
+if(game.getWorld().triggers_0.triggers_0.array[key].ownerId.low_==game.getTank().components_0.array[4].userId.low_)
+
+{
+game.getWorld().triggers_0.triggers_0.array[key].removeMine_0()
+
+
+    
+}    
+} catch (error) {
+    
+}
 
 
 
+}}
 
 
+
+document.addEventListener("keydown",function(e){
+
+if(e.key == "k"){
+
+removeMyMines()
+    
+}
+
+
+
+    
+})
 
 
 
