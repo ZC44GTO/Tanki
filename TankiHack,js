@@ -705,9 +705,9 @@ setInterval(tpByName,300)
 hacks.playerTP = function(){
 if(commons.getChatState()==null){ 
 try {
-game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x
-game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.y = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.y
-game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.z = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.z+120
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.y = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.z = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z+120
     
 } catch (error) {
     
