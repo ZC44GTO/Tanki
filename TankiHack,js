@@ -885,27 +885,27 @@ game.getMines().removeAllMines_0(mineOwnerID)
 
 
 window.mineDecluster= function(){
-for(let i=0;i<game.getWorld().triggers_0.triggers_0.array.length;i++){
-
+for(let i=0;i<16;i++){
+for(let j=0;j<game.getWorld().triggers_0.triggers_0.array.length;j++){
 try {
-parentMine = game.getWorld().triggers_0.triggers_0.array[i]
+if(i<16){    
+parentMine = game.getWorld().triggers_0.triggers_0.array[j]
+childMine = game.getWorld().triggers_0.triggers_0.array[j+1]
 
-childMine = game.getWorld().triggers_0.triggers_0.array[i+1]
+if(parentMine.position.x==childMine.position.x){
 
-if(childMine.position.x-parentMine.position.x==10||childMine.position.x==parentMine.position.x||childMine.position.x-parentMine.position.x==-10||childMine.position.y-parentMine.position.y==10||childMine.position.y==parentMine.position.y||childMine.position.y-parentMine.position.y==-10 ){
 
 childMine.removeMine_0()
-
     
 }
 
-    
+
+}    
 } catch (error) {
     
 }
 
-
-    
+}
 }
 
 }
