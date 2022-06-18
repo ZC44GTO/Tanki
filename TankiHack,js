@@ -781,7 +781,6 @@ function apm(){for (let i = 0; i < vars.shellCache.length; i++)
 
                             }}
 rocketCount = 0
-let apr = setInterval(ap,10)
 hacks.oneHitKill = function(){
 try {
 vars.shellCache = commons.searchObject(game.getTank().components_0.array,"shellCache_0").shellCache_0.itemsInUse_123ot1$_0.array_hd7ov6$_0
@@ -790,8 +789,11 @@ vars.shellCache = commons.searchObject(game.getTank().components_0.array,"shellC
 game.getStriker().sendRealShotMessage_0 = async function(){
 this.realShotMessage_0.barrelIndex=this.currentBarrel_0,this.entity.send_il80ix$(this.realShotMessage_0)  
 Aim()
+
 rocketCount++
+ap()
 await sleep(200)
+
 if(rocketCount==8){
   
 await sleep(900)
@@ -821,7 +823,7 @@ apm()
 }
 
 
-let ohkr = setInterval(hacks.oneHitKill,100)
+let ohkr = setInterval(hacks.oneHitKill,1000)
 
 
 
