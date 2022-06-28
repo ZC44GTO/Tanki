@@ -1,7 +1,4 @@
-
 TPspeed = 100
-
-
 
 class commons{
 getRoot = null
@@ -241,11 +238,29 @@ supps = setInterval(getSupplyArrays,500)
 
 //HACKS
 
+hacks.noLaser = function(){
+
+try {
+commons.searchObject(game.getTank().components_0.array,"laserDirectionMessage_0").turnOffLaser_0()
+} catch (error) {
+ 
+}
+
+ 
+}
+
+
+
+
+
+
+
+
 hacks.speedhack = function(){
 try{
 game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = slider.value
 game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = slider.value
-game.getAirwalk().speedCharacteristics_0.acceleration = slider.value/3.5
+game.getAirwalk().speedCharacteristics_0.acceleration = slider2.value
  
 }catch (error) {
  return Error
@@ -837,7 +852,7 @@ function draggable(el) {
     var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
     
     function mouseMoveHandler(e) {
-     if(e.target!=slider){
+     if(e.target!=slider && e.target!=slider2 && e.target!=slider3 && e.target!=slider4){
       el.style.top = (e.clientY - offsetY) + 'px';
       el.style.left = (e.clientX - offsetX) + 'px';
      }
@@ -855,7 +870,6 @@ function draggable(el) {
                      );
 }
 
-draggable(hackWindow)
 
 
 title = document.createElement("span")
@@ -1221,7 +1235,7 @@ if(acc%2==1){
 autoclickerButton.style.backgroundColor="rgb(109 24 137)"
 autoclickerButton.children[0].style.right = "10%"
 autoclickerButton.children[0].style.backgroundColor = "black"   
-window.p = setInterval(hacks.clicker,clickSpeed)
+window.p = setInterval(hacks.clicker,slider4.value)
 }
 
 if(acc%2==0){
@@ -2302,7 +2316,7 @@ tprBtn.children[0].style.backgroundColor = "white"
 
 
 
-configTitle = document.createElement("span")
+/*configTitle = document.createElement("span")
 configTitle.innerText = "CONFIG"
 Object.assign(configTitle.style, title_style)
 
@@ -2365,20 +2379,30 @@ minusButton.addEventListener("click", function() {
     TPspeed-=20
 
 })
-
+*/
 function page4func() {
     hackWindow.innerHTML = ""
-    hackWindow.appendChild(configTitle)
+    hackWindow.appendChild(miscTitle)
 
     page4.appendChild(whiteIcon)
 
-    hackWindow.appendChild(plusButton)
+    /*hackWindow.appendChild(plusButton)
     hackWindow.appendChild(minusButton)
     hackWindow.appendChild(tps)
 
     hackWindow.appendChild(clickPlusButton)
     hackWindow.appendChild(clickMinusButton)
-    hackWindow.appendChild(cps)
+    hackWindow.appendChild(cps)*/
+    hackWindow.appendChild(noLaser)
+    hackWindow.appendChild(noLaserBtn)
+    hackWindow.appendChild(DeathSpawn)
+    hackWindow.appendChild(DeathSpawnBtn)
+    hackWindow.appendChild(accText)
+    hackWindow.appendChild(tpText)
+    hackWindow.appendChild(clickText)
+    hackWindow.appendChild(slider2)
+    hackWindow.appendChild(slider3)
+    hackWindow.appendChild(slider4)
 
     hackWindow.appendChild(fastClickerBtn)
     hackWindow.appendChild(fastClicker)
@@ -2396,7 +2420,7 @@ function page4func() {
 }
 
 
-clickSpeed = 30
+/*clickSpeed = 30
 cps = document.createElement("span")
 cps.innerText = clickSpeed
 
@@ -2451,7 +2475,7 @@ clickMinusButton.addEventListener("click", function() {
 
 })
 
-
+*/
 
 
 fastClickerBtn = document.createElement("div")
@@ -2476,19 +2500,19 @@ Object.assign(targetModeBtn.style,checkboxUnticked_style)
 
 
 
-fastClickerBtn.style.bottom = "35.5%"
+//fastClickerBtn.style.bottom = "35.5%"
 fastClickerBtn.style.marginLeft = "70%"
 targetModeBtn.style.marginLeft = "70%"
-targetModeBtn.style.bottom = "46.7%"
+//targetModeBtn.style.bottom = "46.7%"
 
 
 
-targetMode.style.bottom = "46%"
+//targetMode.style.bottom = "46%"
 fastClicker.style.fontSize = "15px"
 fastClicker.style.padding = "65.8% 0px 0px 25px"
 fastClicker.style.position = "absolute"
 
-fastClicker.style.bottom = "35%"
+//fastClicker.style.bottom = "35%"
 targetMode.style.fontSize = "15px"
 targetMode.style.padding = "65.8% 0px 0px 25px"
 targetMode.style.position = "absolute"
@@ -2629,3 +2653,292 @@ ck = requestAnimationFrame(Superclicker)
 
 
 }
+
+
+//
+
+
+
+DeathSpawnBtn = document.createElement("div")
+noLaserBtn = document.createElement("div")
+
+DeathSpawn = document.createElement("span")
+noLaser = document.createElement("span")
+
+
+Object.assign(DeathSpawnBtn.style,checkboxUnticked_style)
+Object.assign(noLaserBtn.style,checkboxUnticked_style)
+
+
+
+targetModeBtn.style.bottom = "80%"
+targetMode.style.bottom = "80%"
+fastClickerBtn.style.bottom = "71.9%"
+fastClicker.style.bottom = "71.9%"
+
+
+
+DeathSpawnBtn.style.marginLeft = "70%"
+noLaserBtn.style.marginLeft = "70%"
+
+
+DeathSpawnBtn.style.bottom = "64%"
+noLaserBtn.style.bottom = "56%"
+
+
+
+DeathSpawn.innerText = "Death Spawn:"
+noLaser.innerText = "No Laser:"
+
+DeathSpawn.style.bottom = "64%"
+noLaser.style.bottom = "56%"
+
+
+
+Object.assign(DeathSpawn.style,{fontSize: '15px',
+padding: '65.8% 0px 0px 25px',
+position: 'absolute',
+})
+
+Object.assign(noLaser.style,{fontSize: '15px',
+padding: '65.8% 0px 0px 25px',
+position: 'absolute',
+})
+
+
+
+
+
+
+
+
+innerCircle24 = document.createElement("div")
+innerCircle25 = document.createElement("div")
+
+
+Object.assign(innerCircle24.style,innerCircle_style)
+Object.assign(innerCircle25.style,innerCircle_style)
+
+DeathSpawnBtn.appendChild(innerCircle24)
+noLaserBtn.appendChild(innerCircle25)
+
+
+slider2= document.createElement("input")
+
+slider2.type = "range"
+
+
+slider2.step = 100
+
+slider2.min = 0
+slider2.max = 10000
+slider2.style.position = "absolute"
+slider2.style.marginLeft = "43%"
+slider2.style.bottom  = "48.3%"
+
+
+Object.assign(slider2.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(167 25 45) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+slider3= document.createElement("input")
+
+slider3.type = "range"
+
+
+slider3.step = 10
+
+slider3.min = 0
+slider3.max = 500
+slider3.style.position = "absolute"
+slider3.style.marginLeft = "43%"
+slider3.style.bottom = "39%"
+
+
+Object.assign(slider3.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(96 175 221) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+slider4= document.createElement("input")
+
+slider4.type = "range"
+
+
+slider4.step = 1
+
+slider4.min = 0
+slider4.max = 150
+slider4.style.position = "absolute"
+slider4.style.marginLeft = "30%"
+slider4.style.bottom = "30%"
+
+
+Object.assign(slider4.style,{position: 'absolute',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(211 198 38) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+
+
+//text
+
+
+accText = document.createElement("span")
+setInterval(function(){
+try {
+accText.innerText = `Accel [${slider2.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+Object.assign(accText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '48.3%'})
+
+
+
+
+tpText = document.createElement("span")
+setInterval(function(){
+try {
+tpText.innerText = `Teleport [${slider3.value}]:`    
+TPspeed = slider3.value
+} catch (error) {
+    
+}
+},100)
+
+
+Object.assign(tpText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '39%'})
+
+
+clickText = document.createElement("span")
+setInterval(function(){
+try {
+clickText.innerText = `Clicker [${slider4.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+
+Object.assign(clickText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '30%'})
+
+
+
+slider.style.bottom = "21%"
+speedText.style.bottom = "21.3%"
+
+dsc = 0
+nlc = 0
+DeathSpawnBtn.addEventListener("click",function(){
+dsc +=1
+
+
+if(dsc%2==1){
+DeathSpawnBtn.style.backgroundColor="rgb(109 24 137)"
+DeathSpawnBtn.children[0].style.right = "10%"
+DeathSpawnBtn.children[0].style.backgroundColor = "black"   
+dsr = setInterval(function(){
+try {
+
+game.getTankPhysics().onSpawn_0 = function(t){}
+
+
+    
+} catch (error) {
+    
+}
+
+
+
+    
+},1000)
+}
+
+if(dsc%2==0){
+DeathSpawnBtn.style.backgroundColor="#8080803b"
+DeathSpawnBtn.children[0].style.right = "63%"
+DeathSpawnBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(dsr)
+game.getTankPhysics().onSpawn_0 = function(t){var e=this.body.state;e.position.init_ry1qwf$(t.position),e.orientation.fromEulerAngles_ry1qwf$(t.rotation),e.velocity.init_y2kzbl$(),e.angularVelocity.init_y2kzbl$();var n=this.body;n.saveState(),n.calcDerivedData(),this.interpolatePhysicsState_mx4ult$(0)}
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+
+
+
+
+
+noLaserBtn.addEventListener("click",function(){
+nlc +=1
+
+
+if(nlc%2==1){
+noLaserBtn.style.backgroundColor="rgb(109 24 137)"
+noLaserBtn.children[0].style.right = "10%"
+noLaserBtn.children[0].style.backgroundColor = "black"   
+nlr = setInterval(hacks.noLaser,20)
+}
+
+if(nlc%2==0){
+noLaserBtn.style.backgroundColor="#8080803b"
+noLaserBtn.children[0].style.right = "63%"
+noLaserBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(nlr)
+
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+
+
+
+draggable(hackWindow)
+
