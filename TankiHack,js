@@ -427,7 +427,7 @@ vars.FlagB = game.getWorld().triggers_0.triggers_0.array[0].flagBaseTriggerListe
 }}
 
 
-
+gtf = setInterval(game.getFlags,150)
 
 
 game.getAirwalk = function(){
@@ -475,9 +475,9 @@ supps = setInterval(getSupplyArrays,500)
 
 hacks.speedhack = function(){
 try{
-game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = 15000
-game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = 15000
-game.getAirwalk().speedCharacteristics_0.acceleration = 8000
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.currentValue_58o4vw$_0 = slider.value
+game.getTank().components_0.array[14].chassisLocker_kjqurp$_0.chassis_x8422y$_0.maxSpeedSmoother_fqgjkx$_0.targetValue_mmhheo$_0 = slider.value
+game.getAirwalk().speedCharacteristics_0.acceleration = slider.value/3.5
  
 }catch (error) {
  return Error
@@ -494,11 +494,8 @@ hacks.simpleTP = function()
 
  {
 
-
- 
- 
- 
- if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null)
+try {
+if (KeyPressing.isKeyPressed(87 /*key: W*/) && commons.getChatState()==null && game.getTankPhysics().body.state.position.x != game.getMapBoundary().maxX )
     {
        
 
@@ -560,7 +557,14 @@ hacks.simpleTP = function()
    
    
    
-   
+    
+} catch (error) {
+ 
+}
+ 
+ 
+ 
+ 
 
 }
 
@@ -568,14 +572,14 @@ hacks.simpleTP = function()
 function getTarget(){
 try {
 enemyID = game.getStriker().playerIdQuery_0.playerId 
-window.target = game.getStriker().getPreferredTarget_0(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition
+//window.target = game.getStriker().getPreferredTarget_0(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition
  
 } catch (error) {
  
 }
 }
  
-let gtr = setInterval(getTarget,1)
+let gtr = setInterval(getTarget,100)
 
 
 
@@ -620,26 +624,34 @@ game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q
 hacks.rapidUpdate = function(){
                       
 try {
-   game.getTank().components_0.array[37].needImmediateUpdate_0  = true  
+   game.getTank().components_0.array[37].sendState_0(game.getTankPhysics().getInterpolatedBodyState())    
 } catch (error) {
      
  }}
 
 
 hacks.TPFlagA = function(){
+try {
 if(commons.getChatState()==null){
 game.getTankPhysics().body_xsop3k$_0.state.position.x = vars.FlagA.x
 game.getTankPhysics().body_xsop3k$_0.state.position.y = vars.FlagA.y
 game.getTankPhysics().body_xsop3k$_0.state.position.z = vars.FlagA.z
+} 
+} catch (error) {
+ 
 }
 }
 
 
 hacks.TPFlagB = function(){
+try {
 if(commons.getChatState()==null){  
 game.getTankPhysics().body_xsop3k$_0.state.position.x = vars.FlagB.x
 game.getTankPhysics().body_xsop3k$_0.state.position.y = vars.FlagB.y
 game.getTankPhysics().body_xsop3k$_0.state.position.z = vars.FlagB.z
+} 
+} catch (error) {
+ 
 }
 }
 
@@ -701,6 +713,7 @@ setInterval(tpByName,300)
 
 
 hacks.playerTP = function(){
+try {
 if(commons.getChatState()==null){ 
 try {
 game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$_0.state.position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
@@ -710,6 +723,9 @@ game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$
 } catch (error) {
     
 }
+} 
+} catch (error) {
+ 
 }
 }
 
@@ -718,6 +734,9 @@ hacks.randomTP = function(){
 try {
 game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.x = commons.getRandom(game.getMapBoundary().minX,game.getMapBoundary().maxX)
 game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition.y = commons.getRandom(game.getMapBoundary().minY,game.getMapBoundary().maxY)
+
+window.fakeR = requestAnimationFrame(hacks.randomTP)
+
 } catch (error) {
   
 }  
@@ -727,27 +746,45 @@ game.getTank().components_0.array[5].tankPhysicsComponent_0.interpolatedPosition
 
  
 hacks.airWalk = function(){
+try {
 game.getAirwalk().params_nd1j3b$_0.maxRayLength = 11111111  
 game.getAirwalk().params_nd1j3b$_0.dampingCoeff = 0
 game.getAirwalk().params_nd1j3b$_0.springCoeff= 0
+   
+} catch (error) {
+ 
+}
   
-  
 }
 
 
-function unAim(){
 
-game.getStriker().lockTarget_gcez93$ = function(){return !1-!0}
+
+
+
+function sap(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {   vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 0
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 0;
+                                
+
+                            }    
+} catch (error) {
     
-}
+}}
 
-function Aim(){
 
-game.getStriker().lockTarget_gcez93$ =function(t,e,n){return void 0===e&&(e=null),n?n(t,e):this.lockTarget_gcez93$$default(t,e)}
+function sapm(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                               vars.shellCache.at(i).components_0.array.at(1).maxSpeed_0 = 35000
+                                vars.shellCache.at(i).components_0.array.at(1).minSpeed_0 = 2000;
+                                
+
+                            }    
+} catch (error) {
     
-}
-
-
+}}
 
 
 
@@ -766,66 +803,98 @@ for (let i = 0; i < vars.shellCache.length; i++)
 }}
 
 
-function apm(){for (let i = 0; i < vars.shellCache.length; i++)
+function apm(){try {
+ for (let i = 0; i < vars.shellCache.length; i++)
                             {
                                 
-                                vars.shellCache.at(i).components_0.array.at(1).position.x = target.x
-                                vars.shellCache.at(i).components_0.array.at(1).position.y = target.y
-                                vars.shellCache.at(i).components_0.array.at(1).position.z = target.z
+                                vars.shellCache.at(i).components_0.array.at(1).position.x = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+                                vars.shellCache.at(i).components_0.array.at(1).position.y = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+                                vars.shellCache.at(i).components_0.array.at(1).position.z = game.getPlayers().getTank_s8cxhz$(enemyID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z
 
 
-                            }}
-rocketCount = 0
+                            }
+} catch (error) {
+ 
+}}
+
+
+function tapm(){try {
+for (let i = 0; i < vars.shellCache.length; i++)
+                            {
+                                
+                                vars.shellCache.at(i).components_0.array.at(1).position.x = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.x
+                                vars.shellCache.at(i).components_0.array.at(1).position.y = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.y
+                                vars.shellCache.at(i).components_0.array.at(1).position.z = game.getPlayers().getTank_s8cxhz$(tpUserID).components_0.array[5].tankPhysicsComponent_tczrao$_0.interpolatedPosition.z
+
+
+                            } 
+} catch (error) {
+ 
+}}
+
+
+
+
+isTarget = false
+
 hacks.oneHitKill = function(){
 try {
 vars.shellCache = commons.searchObject(game.getTank().components_0.array,"shellCache_0").shellCache_0.itemsInUse_123ot1$_0.array_hd7ov6$_0
 
-
-game.getStriker().sendRealShotMessage_0 = async function(){
-this.realShotMessage_0.barrelIndex=this.currentBarrel_0,this.entity.send_il80ix$(this.realShotMessage_0)  
-Aim()
-
-rocketCount++
-ap()
-await sleep(200)
-
-if(rocketCount==8){
-  
-await sleep(900)
-rocketCount = 0
-apm()
-}
-  
-  
-  
-  
-}  
-
-  
-  
-  
-  
-} catch (error) {
     
-}  
-  
-  
-  
-  
-  
-  
-  
+if(tprc%2==1){
+if(vars.shellCache.length<8){
+ap()
+
+    
+}
+
+if(vars.shellCache.length==8){
+ap()
+if(isTarget){ 
+setTimeout(tapm,1500)
+}
+if(isTarget==false){ 
+setTimeout(apm,1500)
+
+
+
+
+ 
+}
+    
+    
 }
 
 
-let ohkr = setInterval(hacks.oneHitKill,1000)
+if(tprc%2==0){
+if(vars.shellCache.length<8){
+sap()
+
+    
+}
+
+if(vars.shellCache.length==8){
+sap()
+setTimeout(sapm,1500)
+    
+}
+
+    
+}
 
 
 
-
-
+    
+}
+ 
+} catch (error) {
+ 
+}
+}
 
 hacks.goldTP = function(){
+try {
 if(commons.getChatState()==null){
 for(let i =0;i<game.getWorld().triggers_0.triggers_0.array.length;i++){try {
 if(game.getWorld().triggers_0.triggers_0.array[i].bonus_0.bonusData_cqilaj$_0.bonusLight.lightColor.color==16777215){    
@@ -839,7 +908,10 @@ game.getTank().components_0.array[5].tankPhysicsComponent_tczrao$_0.body_xsop3k$
 
 
 }
-
+ 
+} catch (error) {
+ 
+}
 }
 
 
@@ -856,10 +928,14 @@ game.getWorld().physicsScene_0.gravity.z  = 0
     
 }
 
-function nt(){game.getTankPhysics().body.state.orientation.x = 0;
+function nt(){try {
+game.getTankPhysics().body.state.orientation.x = 0;
     game.getTankPhysics().body.state.orientation.y = 0;
    game.getTankPhysics().body.state.angularVelocity.y= 0
-    game.getTankPhysics().body.state.angularVelocity.x = 0;}
+    game.getTankPhysics().body.state.angularVelocity.x = 0; 
+} catch (error) {
+ 
+}}
 
 
 
@@ -913,19 +989,6 @@ childMine.removeMine_0()
 
 
 
-document.addEventListener("keydown",function(e){
-
-if(e.key == "m"){
-
-mineDecluster()
-    
-}
-
-
-
-    
-})
-
 
 
 
@@ -947,23 +1010,6 @@ game.getWorld().triggers_0.triggers_0.array[key].removeMine_0()
 
 
 }}
-
-
-
-document.addEventListener("keydown",function(e){
-
-if(e.key == "k"){
-
-removeMyMines()
-    
-}
-
-
-
-    
-})
-
-
 
 
 
@@ -1017,14 +1063,17 @@ Object.assign(hackWindow.style,hackWindow_style);
 root.appendChild(hackWindow)
 
 function draggable(el) {
+ 
   el.addEventListener('mousedown', function(e) {
     var offsetX = e.clientX - parseInt(window.getComputedStyle(this).left);
     var offsetY = e.clientY - parseInt(window.getComputedStyle(this).top);
     
     function mouseMoveHandler(e) {
+     if(e.target!=slider){
       el.style.top = (e.clientY - offsetY) + 'px';
       el.style.left = (e.clientX - offsetX) + 'px';
-    }
+     }
+     }
 
     function reset() {
       window.removeEventListener('mousemove', mouseMoveHandler);
@@ -1033,7 +1082,9 @@ function draggable(el) {
 
     window.addEventListener('mousemove', mouseMoveHandler);
     window.addEventListener('mouseup', reset);
-  });
+  }
+                     
+                     );
 }
 
 draggable(hackWindow)
@@ -1066,9 +1117,9 @@ autoHealButton = document.createElement("div")
 PlayerTPButton = document.createElement("div")
 SpeedhackButton = document.createElement("div")
 SimpleTPButton = document.createElement("div")
-FlagTPButton = document.createElement("div")
-AirwalkButton = document.createElement("div")
-GoldTPButton = document.createElement("div")
+rapidUpdateButton = document.createElement("div")
+//AirwalkButton = document.createElement("div")
+//GoldTPButton = document.createElement("div")
 
 
 
@@ -1176,7 +1227,7 @@ l7.style.bottom = "31%"
 }
 
 
-applyButtons(notiltButton,autoclickerButton,autoHealButton,PlayerTPButton,SpeedhackButton,SimpleTPButton,FlagTPButton)
+applyButtons(notiltButton,autoclickerButton,autoHealButton,PlayerTPButton,SpeedhackButton,SimpleTPButton,rapidUpdateButton)
 
 
 //page1
@@ -1186,7 +1237,7 @@ Autoclicker= document.createElement("span")
 Autoheal= document.createElement("span")
 PlayerTP= document.createElement("span")
 GoldTP= document.createElement("span")
-FlagTP= document.createElement("span")
+rapidUpdate= document.createElement("span")
 Airwalk= document.createElement("span")
 SimpleTP= document.createElement("span")
 Speedhack= document.createElement("span")
@@ -1194,17 +1245,15 @@ Speedhack= document.createElement("span")
 Notilt.innerText = "Notilt:"
 Autoclicker.innerText = "Autoclicker:"
 Autoheal.innerText = "Autoheal:"
-PlayerTP.innerText = "PlayerTP:"
-SimpleTP.innerText = "SimpleTP:"
-GoldTP.innerText = "GoldTP:"
-FlagTP.innerText = "Rapid Update:"
-Airwalk.innerText = "Airwalk:"
+PlayerTP.innerText = "Player TP [V]:"
+SimpleTP.innerText = "Simple TP:"
+rapidUpdate.innerText = "Rapid Update:"
 Speedhack.innerText = "Speedhack:"
 
 
 
 
-applyLabels(Notilt,Autoclicker,Autoheal,PlayerTP,Speedhack,SimpleTP,FlagTP)
+applyLabels(Notilt,Autoclicker,Autoheal,PlayerTP,Speedhack,SimpleTP,rapidUpdate)
 
 
 
@@ -1228,7 +1277,7 @@ hackWindow.appendChild(autoHealButton)
 hackWindow.appendChild(PlayerTPButton)
 hackWindow.appendChild(SpeedhackButton)
 hackWindow.appendChild(SimpleTPButton)
-hackWindow.appendChild(FlagTPButton)
+hackWindow.appendChild(rapidUpdateButton)
 
 
 hackWindow.appendChild(Notilt)
@@ -1238,7 +1287,7 @@ hackWindow.appendChild(PlayerTP)
 hackWindow.appendChild(Speedhack)
 hackWindow.appendChild(SimpleTP)
 hackWindow.appendChild(PlayerTP)
-hackWindow.appendChild(FlagTP)
+hackWindow.appendChild(rapidUpdate)
 
 
 
@@ -1278,7 +1327,7 @@ autoHealButton.appendChild(innerCircle3)
 PlayerTPButton.appendChild(innerCircle4)
 SpeedhackButton.appendChild(innerCircle5)
 SimpleTPButton.appendChild(innerCircle6)
-FlagTPButton.appendChild(innerCircle7)
+rapidUpdateButton.appendChild(innerCircle7)
 
 
 
@@ -1329,6 +1378,7 @@ page4.style.marginLeft = "76%"
 //page2
 
 
+hackWindow.style.backdropFilter = "blur(1.7px)"
 
 
 
@@ -1356,7 +1406,7 @@ ahc=0
 ptc = 0
 shc = 0
 smc = 0
-ftc = 0
+rtc = 0
 
 //end vars
 
@@ -1403,7 +1453,7 @@ if(acc%2==1){
 autoclickerButton.style.backgroundColor="rgb(109 24 137)"
 autoclickerButton.children[0].style.right = "10%"
 autoclickerButton.children[0].style.backgroundColor = "black"   
-window.p = setInterval(hacks.clicker,30)
+window.p = setInterval(hacks.clicker,clickSpeed)
 }
 
 if(acc%2==0){
@@ -1519,25 +1569,23 @@ clearInterval(window.ckp)
 })
 
 
-FlagTPButton.addEventListener("click",function(){
-ftc +=1
+rapidUpdateButton.addEventListener("click",function(){
+rtc +=1
 
 
-if(ftc%2==1){
-FlagTPButton.style.backgroundColor="rgb(109 24 137)"
-FlagTPButton.children[0].style.right = "10%"
-FlagTPButton.children[0].style.backgroundColor = "black"   
+if(rtc%2==1){
+rapidUpdateButton.style.backgroundColor="rgb(109 24 137)"
+rapidUpdateButton.children[0].style.right = "10%"
+rapidUpdateButton.children[0].style.backgroundColor = "black"   
 window.ru = setInterval(hacks.rapidUpdate,10)
-window.ram = setInterval(removeAllMines,1000)
 
   
 }
 
-if(ftc%2==0){
-FlagTPButton.style.backgroundColor="#8080803b"
-FlagTPButton.children[0].style.right = "63%"
-FlagTPButton.children[0].style.backgroundColor = "white"   
-clearInterval(window.ram)
+if(rtc%2==0){
+rapidUpdateButton.style.backgroundColor="#8080803b"
+rapidUpdateButton.children[0].style.right = "63%"
+rapidUpdateButton.children[0].style.backgroundColor = "white"   
 clearInterval(window.ru)
 
 
@@ -1548,7 +1596,6 @@ clearInterval(window.ru)
 
     
 })
-
 
 root.removeChild(hackWindow)
 
@@ -1565,8 +1612,1252 @@ root.removeChild(hackWindow)
   
  
  
-document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
+//document.addEventListener('keydown',   function (event) { if (event.key === 'r'){unAim()}})
 
 
 
 
+
+
+
+
+
+
+
+//page2
+
+
+airwalkBtn = document.createElement("div")
+randomBtn = document.createElement("div")
+FlagTPBtn= document.createElement("div")
+GoldTPBtn =document.createElement("div")
+MineHackBtn = document.createElement("div")
+NoKnockbackBtn = document.createElement("div")
+IgnoreTexturesBtn = document.createElement("div")
+
+
+
+innerCircle8  = document.createElement("div")
+innerCircle9  = document.createElement("div")
+innerCircle10  = document.createElement("div")
+innerCircle11 = document.createElement("div")
+innerCircle12  = document.createElement("div")
+innerCircle13  = document.createElement("div")
+innerCircle14  = document.createElement("div")
+
+
+Object.assign(innerCircle8.style,innerCircle_style)
+Object.assign(innerCircle9.style,innerCircle_style)
+Object.assign(innerCircle10.style,innerCircle_style)
+Object.assign(innerCircle11.style,innerCircle_style)
+Object.assign(innerCircle12.style,innerCircle_style)
+Object.assign(innerCircle13.style,innerCircle_style)
+Object.assign(innerCircle14.style,innerCircle_style)
+
+
+airwalkBtn.appendChild(innerCircle8)
+randomBtn.appendChild(innerCircle9)
+FlagTPBtn.appendChild(innerCircle10)
+GoldTPBtn.appendChild(innerCircle11)
+MineHackBtn.appendChild(innerCircle12)
+NoKnockbackBtn.appendChild(innerCircle13)
+IgnoreTexturesBtn.appendChild(innerCircle14)
+
+
+
+
+
+applyButtons(airwalkBtn,randomBtn,FlagTPBtn,GoldTPBtn,MineHackBtn,NoKnockbackBtn,IgnoreTexturesBtn)
+
+Airwalk= document.createElement("span")
+randomTP= document.createElement("span")
+flagTP = document.createElement("span")
+GoldTP= document.createElement("span")
+Minehack = document.createElement("span")
+NoKnockback = document.createElement("span")
+IgnoreTextures= document.createElement("span")
+
+
+
+applyLabels(Airwalk,randomTP,flagTP,GoldTP,Minehack,NoKnockback,IgnoreTextures)
+
+
+
+Airwalk.innerText = "Airwalk:"
+randomTP.innerText = "Random TP:"
+flagTP.innerText = "Flag TP [N]:"
+GoldTP.innerText = "Gold TP [T]:"
+Minehack.innerText = "Minehack:"
+NoKnockback.innerText = "No Knockback:"
+IgnoreTextures.innerText = "Ignore Textures:"
+
+
+//counts
+awc = 0
+rwc = 0
+ftbc = 0
+gtbc = 0
+mhc = 0
+nkc = 0
+itc = 0
+//inner counts
+ftc = 0
+gtc = 0
+//end
+
+
+//event listeners
+
+
+airwalkBtn.addEventListener("click",function(){
+awc +=1
+
+
+if(awc%2==1){
+airwalkBtn.style.backgroundColor="rgb(109 24 137)"
+airwalkBtn.children[0].style.right = "10%"
+airwalkBtn.children[0].style.backgroundColor = "black"   
+airw = setInterval(hacks.airWalk,1000)  
+}
+
+if(awc%2==0){
+airwalkBtn.style.backgroundColor="#8080803b"
+airwalkBtn.children[0].style.right = "63%"
+airwalkBtn.children[0].style.backgroundColor = "white"   
+try {
+clearInterval(airw)
+game.getAirwalk().params_nd1j3b$_0.dampingCoeff= 2000
+game.getAirwalk().params_nd1j3b$_0.maxRayLength= 50
+game.getAirwalk().params_nd1j3b$_0.springCoeff= 16000 
+} catch (error) {
+ 
+}
+}
+
+
+    
+})
+
+
+randomBtn.addEventListener("click",function(){
+awc +=1
+
+
+if(awc%2==1){
+randomBtn.style.backgroundColor="rgb(109 24 137)"
+randomBtn.children[0].style.right = "10%"
+randomBtn.children[0].style.backgroundColor = "black"   
+hacks.randomTP()
+
+
+}
+
+if(awc%2==0){
+randomBtn.style.backgroundColor="#8080803b"
+randomBtn.children[0].style.right = "63%"
+randomBtn.children[0].style.backgroundColor = "white"   
+cancelAnimationFrame(window.fakeR)
+}
+
+
+    
+})
+
+
+
+
+FlagTPBtn.addEventListener("click",function(){
+ftbc +=1
+
+
+if(ftbc%2==1){
+FlagTPBtn.style.backgroundColor="rgb(109 24 137)"
+FlagTPBtn.children[0].style.right = "10%"
+FlagTPBtn.children[0].style.backgroundColor = "black"   
+document.addEventListener("keydown", window.ftp = function(e){
+if(e.key=="n"){
+
+ftc+=1
+if(ftc%2==1){
+
+hacks.TPFlagA()    
+}
+    
+if(ftc%2==0){
+
+hacks.TPFlagB()    
+}
+      
+}
+
+
+
+    
+})
+
+}
+
+if(ftbc%2==0){
+FlagTPBtn.style.backgroundColor="#8080803b"
+FlagTPBtn.children[0].style.right = "63%"
+FlagTPBtn.children[0].style.backgroundColor = "white"   
+document.removeEventListener("keydown",window.ftp)
+
+}
+
+
+    
+})
+
+
+
+
+
+GoldTPBtn.addEventListener("click",function(){
+gtbc +=1
+
+
+if(gtbc%2==1){
+GoldTPBtn.style.backgroundColor="rgb(109 24 137)"
+GoldTPBtn.children[0].style.right = "10%"
+GoldTPBtn.children[0].style.backgroundColor = "black"   
+document.addEventListener("keydown", window.gtp = function(e){
+if(e.key=="t" && commons.getChatState()==null){
+
+gtc+=1
+if(gtc%2==1){
+
+window.gtr = setInterval(hacks.goldTP,10)    
+}
+    
+if(gtc%2==0){
+
+clearInterval(window.gtr)
+}
+      
+}
+
+
+
+    
+})
+
+}
+
+if(gtbc%2==0){
+GoldTPBtn.style.backgroundColor="#8080803b"
+GoldTPBtn.children[0].style.right = "63%"
+GoldTPBtn.children[0].style.backgroundColor = "white"   
+document.removeEventListener("keydown",window.gtp)
+
+}
+
+
+    
+})
+
+
+
+MineHackBtn.addEventListener("click",function(){
+mhc +=1
+
+
+if(mhc%2==1){
+MineHackBtn.style.backgroundColor="rgb(109 24 137)"
+MineHackBtn.children[0].style.right = "10%"
+MineHackBtn.children[0].style.backgroundColor = "black"   
+window.ram = setInterval(removeAllMines,1000)
+}
+
+if(mhc%2==0){
+MineHackBtn.style.backgroundColor="#8080803b"
+MineHackBtn.children[0].style.right = "63%"
+MineHackBtn.children[0].style.backgroundColor = "white"   
+clearInterval(window.ram)
+}
+
+
+    
+})
+
+
+
+
+NoKnockbackBtn.addEventListener("click",function(){
+nkc +=1
+
+
+if(nkc%2==1){
+NoKnockbackBtn.style.backgroundColor="rgb(109 24 137)"
+NoKnockbackBtn.children[0].style.right = "10%"
+NoKnockbackBtn.children[0].style.backgroundColor = "black"   
+
+nkr = setInterval(function(){try {
+game.getTankPhysics().body.addWorldForce_f5o1bj$ = () =>{}
+ 
+} catch (error) {
+ 
+}
+                     },1500) 
+
+}
+
+if(nkc%2==0){
+NoKnockbackBtn.style.backgroundColor="#8080803b"
+NoKnockbackBtn.children[0].style.right = "63%"
+NoKnockbackBtn.children[0].style.backgroundColor = "white"   
+clearInterval(nkr)
+game.getTankPhysics().body.addWorldForce_f5o1bj$ = function(t,e,n){var o=n*e.x,i=n*e.y,r=n*e.z;this.forceAccum_0.x=this.forceAccum_0.x+o,this.forceAccum_0.y=this.forceAccum_0.y+i,this.forceAccum_0.z=this.forceAccum_0.z+r;var s=this.state.position,a=t.x-s.x,c=t.y-s.y,u=t.z-s.z;this.torqueAccum_0.x=this.torqueAccum_0.x+(c*r-u*i),this.torqueAccum_0.y=this.torqueAccum_0.y+(u*o-a*r),this.torqueAccum_0.z=this.torqueAccum_0.z+(a*i-c*o)}
+
+}
+
+
+    
+})
+
+
+
+IgnoreTexturesBtn.addEventListener("click",function(){
+itc +=1
+
+
+if(itc%2==1){
+IgnoreTexturesBtn.style.backgroundColor="rgb(109 24 137)"
+IgnoreTexturesBtn.children[0].style.right = "10%"
+IgnoreTexturesBtn.children[0].style.backgroundColor = "black"   
+itr = setInterval(function(){
+try {
+game.getTankPhysics().body.scene.getBodyContacts_9pl3r9$  = function(t,e){} 
+clearInterval(itre)
+} catch (error) {
+ 
+}
+},1500)
+}
+
+if(itc%2==0){
+IgnoreTexturesBtn.style.backgroundColor="#8080803b"
+IgnoreTexturesBtn.children[0].style.right = "63%"
+IgnoreTexturesBtn.children[0].style.backgroundColor = "white" 
+clearInterval(itr)
+itre = setInterval(function(){
+try {
+game.getTankPhysics().body.scene.getBodyContacts_9pl3r9$  = function(t,e){return this.$delegate_jkpsdr$_0.getBodyContacts_9pl3r9$(t,e)}
+ 
+} catch (error) {
+ 
+}
+},1500)
+}
+
+
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+whiteIcon = document.createElement("div")
+
+
+
+whiteIcon.style.width = "100%"
+whiteIcon.style.height = "100%"
+whiteIcon.style.background = "white"
+whiteIcon.style.borderRadius = "20px"
+
+
+
+
+page1.appendChild(whiteIcon)
+
+
+page1.addEventListener("click",page1func)
+page2.addEventListener("click",page2func)
+page3.addEventListener("click",page3func)
+page4.addEventListener("click",page4func)
+
+
+
+
+
+
+function page1func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(title)
+hackWindow.appendChild(notiltButton)
+hackWindow.appendChild(autoclickerButton)
+hackWindow.appendChild(autoHealButton)
+hackWindow.appendChild(PlayerTPButton)
+hackWindow.appendChild(SpeedhackButton)
+hackWindow.appendChild(SimpleTPButton)
+hackWindow.appendChild(rapidUpdateButton)
+
+
+
+
+
+notiltButton.appendChild(innerCircle1)
+autoclickerButton.appendChild(innerCircle2)
+autoHealButton.appendChild(innerCircle3)
+PlayerTPButton.appendChild(innerCircle4)
+SpeedhackButton.appendChild(innerCircle5)
+SimpleTPButton.appendChild(innerCircle6)
+rapidUpdateButton.appendChild(innerCircle7)
+
+
+
+    
+hackWindow.appendChild(Notilt)
+hackWindow.appendChild(Autoclicker)
+hackWindow.appendChild(Autoheal)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(Speedhack)
+hackWindow.appendChild(SimpleTP)
+hackWindow.appendChild(PlayerTP)
+hackWindow.appendChild(rapidUpdate)
+
+
+page1.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+    
+}
+
+
+
+
+
+
+function page2func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(title)
+    
+
+
+    
+hackWindow.appendChild(airwalkBtn)
+hackWindow.appendChild(randomBtn)
+hackWindow.appendChild(GoldTPBtn)
+hackWindow.appendChild(FlagTPBtn)
+hackWindow.appendChild(MineHackBtn)
+hackWindow.appendChild(NoKnockbackBtn)
+hackWindow.appendChild(IgnoreTexturesBtn)
+
+    
+hackWindow.appendChild(Airwalk)
+hackWindow.appendChild(GoldTP)
+hackWindow.appendChild(flagTP)
+hackWindow.appendChild(randomTP)
+hackWindow.appendChild(Minehack)
+hackWindow.appendChild(NoKnockback)
+hackWindow.appendChild(IgnoreTextures)    
+
+
+airwalkBtn.appendChild(innerCircle8)
+randomBtn.appendChild(innerCircle9)
+FlagTPBtn.appendChild(innerCircle10)
+GoldTPBtn.appendChild(innerCircle11)
+MineHackBtn.appendChild(innerCircle12)
+NoKnockbackBtn.appendChild(innerCircle13)
+IgnoreTexturesBtn.appendChild(innerCircle14)
+
+
+
+
+    
+page2.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+}    
+
+
+
+
+
+
+
+
+miscTitle = document.createElement("span")
+miscTitle.innerText = "MISC"
+Object.assign(miscTitle.style,title_style)
+
+page3.addEventListener("click",page3func)
+miscTitle.style.padding= '24px 30% 0px 35%'
+
+
+freezeTanksBtn = document.createElement("div")
+noStunBtn = document.createElement("div")
+declusterBtn = document.createElement("div")
+playerMinesBtn = document.createElement("div")
+ohkBtn = document.createElement("div")
+aimbotBtn = document.createElement("div")
+tprBtn = document.createElement("div")
+
+
+freezeTanks = document.createElement("span")
+noStun = document.createElement("span")
+decluster =  document.createElement("span")
+playerMines =  document.createElement("span")
+ohk = document.createElement("span")
+aimbot =  document.createElement("span")
+tpr =  document.createElement("span")
+
+
+
+freezeTanks.innerText = "Freeze Tanks:"
+noStun.innerText = "No Stun:"
+decluster.innerText = "Mine Decluster [M]:"
+playerMines.innerText = "Player Mines [K]:"
+ohk.innerText = "One Hit Kill:"
+aimbot.innerText = "Aimbot:"
+tpr.innerText = "TP Rockets:"
+
+
+
+applyLabels(freezeTanks,noStun,decluster,playerMines,aimbot,ohk,tpr)
+applyButtons(freezeTanksBtn,noStunBtn,declusterBtn,playerMinesBtn,aimbotBtn,ohkBtn,tprBtn)
+
+
+innerCircle15  = document.createElement("div")
+innerCircle16  = document.createElement("div")
+innerCircle17  = document.createElement("div")
+innerCircle18  = document.createElement("div")
+innerCircle19  = document.createElement("div")
+innerCircle20  = document.createElement("div")
+innerCircle21  = document.createElement("div")
+
+
+
+
+
+Object.assign(innerCircle15.style,innerCircle_style)
+Object.assign(innerCircle16.style,innerCircle_style)
+Object.assign(innerCircle17.style,innerCircle_style)
+Object.assign(innerCircle18.style,innerCircle_style)
+Object.assign(innerCircle19.style,innerCircle_style)
+Object.assign(innerCircle20.style,innerCircle_style)
+Object.assign(innerCircle21.style,innerCircle_style)
+
+
+freezeTanksBtn.appendChild(innerCircle15)
+noStunBtn.appendChild(innerCircle16)
+playerMinesBtn.appendChild(innerCircle17)
+declusterBtn.appendChild(innerCircle18)
+ohkBtn.appendChild(innerCircle19)
+aimbotBtn.appendChild(innerCircle20)
+tprBtn.appendChild(innerCircle21)
+
+
+
+
+
+
+function page3func(){
+hackWindow.innerHTML = ""
+hackWindow.appendChild(miscTitle)
+    
+hackWindow.appendChild(noStunBtn)
+hackWindow.appendChild(tprBtn)
+hackWindow.appendChild(aimbotBtn)
+hackWindow.appendChild(declusterBtn)
+hackWindow.appendChild(playerMinesBtn)
+hackWindow.appendChild(ohkBtn)
+hackWindow.appendChild(freezeTanksBtn)
+
+
+hackWindow.appendChild(freezeTanks)
+hackWindow.appendChild(tpr)
+hackWindow.appendChild(aimbot)
+hackWindow.appendChild(playerMines)
+hackWindow.appendChild(ohk)
+hackWindow.appendChild(noStun)
+hackWindow.appendChild(decluster)
+    
+    
+page3.appendChild(whiteIcon)
+
+hackWindow.appendChild(page1)
+hackWindow.appendChild(page2)
+hackWindow.appendChild(page3)
+hackWindow.appendChild(page4)
+
+
+
+
+
+}    
+
+
+ffc = 0
+nsc = 0
+mdc = 0
+pmc = 0
+amc = 0
+ohkc = 0
+tprc = 0
+
+
+
+//event listeners
+
+freezeTanksBtn.addEventListener("click",function(){
+ffc +=1
+
+
+if(ffc%2==1){
+freezeTanksBtn.style.backgroundColor="rgb(109 24 137)"
+freezeTanksBtn.children[0].style.right = "10%"
+freezeTanksBtn.children[0].style.backgroundColor = "black"   
+
+ftr = setInterval(function(){
+try {
+for(let i=0;i<game.getPlayers().list_0.array.length;i++){
+if(game.getPlayers().list_0.array[i].components_0.array[4].userId.low_!=game.getTank().components_0.array[4].userId.low_)
+{
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.frozen=true
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.movable=false
+
+    
+}
+
+    
+}
+
+
+ 
+} catch (error) {
+ 
+}
+    
+},1000)
+
+}
+
+if(ffc%2==0){
+freezeTanksBtn.style.backgroundColor="#8080803b"
+freezeTanksBtn.children[0].style.right = "63%"
+freezeTanksBtn.children[0].style.backgroundColor = "white"   
+clearInterval(ftr)
+
+
+try {
+for(let i=0;i<game.getPlayers().list_0.array.length;i++){
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.frozen=false
+
+game.getPlayers().list_0.array[i].components_0.array[5].tankPhysicsComponent_0.body.movable=true
+
+    
+}
+ 
+} catch (error) {
+ 
+}
+
+
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+noStunBtn.addEventListener("click",function(){
+nsc +=1
+
+
+if(nsc%2==1){
+noStunBtn.style.backgroundColor="rgb(109 24 137)"
+noStunBtn.children[0].style.right = "10%"
+noStunBtn.children[0].style.backgroundColor = "black"   
+nsr = setInterval(function(){
+try {
+game.getTank().components_0.array[game.getTank().components_0.array.length-1].gameObject_0.gameClass.models_0.array_hd7ov6$_0[1].stun = function(){}
+    
+} catch (error) {
+    
+}                            },1000)
+}
+
+if(nsc%2==0){
+noStunBtn.style.backgroundColor="#8080803b"
+noStunBtn.children[0].style.right = "63%"
+noStunBtn.children[0].style.backgroundColor = "white"   
+
+
+clearInterval(nsr)
+try {
+game.getTank().components_0.array[game.getTank().components_0.array.length-1].gameObject_0.gameClass.models_0.array_hd7ov6$_0[1].stun = function(){var t;null!=(t=this.getData_lmshww$(w(N)))&&t.send_il80ix$(_u.EnableStunEffect)} 
+} catch (error) {
+ 
+}
+
+    
+}
+
+
+    
+})
+
+
+
+declusterBtn.addEventListener("click",function(){
+mdc +=1
+
+
+if(mdc%2==1){
+declusterBtn.style.backgroundColor="rgb(109 24 137)"
+declusterBtn.children[0].style.right = "10%"
+declusterBtn.children[0].style.backgroundColor = "black"   
+
+
+document.addEventListener("keydown",window.dcm = function(e){
+
+if(e.key == "m"){
+
+mineDecluster()
+    
+}
+
+
+
+    
+})
+
+    
+}
+
+if(mdc%2==0){
+declusterBtn.style.backgroundColor="#8080803b"
+declusterBtn.children[0].style.right = "63%"
+declusterBtn.children[0].style.backgroundColor = "white"   
+
+
+document.removeEventListener("keydown",window.dcm)
+
+    
+}
+
+
+    
+})
+
+
+
+playerMinesBtn.addEventListener("click",function(){
+pmc +=1
+
+
+if(pmc%2==1){
+playerMinesBtn.style.backgroundColor="rgb(109 24 137)"
+playerMinesBtn.children[0].style.right = "10%"
+playerMinesBtn.children[0].style.backgroundColor = "black"   
+
+
+document.addEventListener("keydown",window.rmm = function(e){
+
+if(e.key == "k"){
+
+removeMyMines()    
+}
+
+
+
+    
+})
+
+    
+}
+
+if(pmc%2==0){
+playerMinesBtn.style.backgroundColor="#8080803b"
+playerMinesBtn.children[0].style.right = "63%"
+playerMinesBtn.children[0].style.backgroundColor = "white"   
+
+
+document.removeEventListener("keydown",window.rmm)
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+
+
+aimbotBtn.addEventListener("click",function(){
+amc +=1
+
+
+if(amc%2==1){
+aimbotBtn.style.backgroundColor="rgb(109 24 137)"
+aimbotBtn.children[0].style.right = "10%"
+aimbotBtn.children[0].style.backgroundColor = "black"   
+aimb = setInterval(function(){
+try {
+game.getStriker().lockTarget_gcez93$ = function (t, e, n)
+    {
+        if (e != null)
+        {
+            targetId = e;
+        }
+        
+        
+        
+        this.lockTarget_gcez93$$default(t, e);
+        return true;
+    } 
+} catch (error) {
+ 
+}
+},1500)
+    
+}
+
+if(amc%2==0){
+aimbotBtn.style.backgroundColor="#8080803b"
+aimbotBtn.children[0].style.right = "63%"
+aimbotBtn.children[0].style.backgroundColor = "white"   
+
+ try {
+clearInterval(aimb)
+ 
+game.getStriker().lockTarget_gcez93$ =function(t,e,n){return void 0===e&&(e=null),n?n(t,e):this.lockTarget_gcez93$$default(t,e)}
+  
+ } catch (error) {
+  
+ }
+    
+}
+
+
+    
+})
+
+
+
+
+
+
+ohkBtn.addEventListener("click",function(){
+ohkc +=1
+
+
+if(ohkc%2==1){
+ohkBtn.style.backgroundColor="rgb(109 24 137)"
+ohkBtn.children[0].style.right = "10%"
+ohkBtn.children[0].style.backgroundColor = "black"   
+window.ohkr = setInterval(hacks.oneHitKill,100)
+
+    
+}
+
+if(ohkc%2==0){
+ohkBtn.style.backgroundColor="#8080803b"
+ohkBtn.children[0].style.right = "63%"
+ohkBtn.children[0].style.backgroundColor = "white"   
+clearInterval(window.ohkr)
+
+    
+}
+
+
+    
+})
+
+
+
+
+
+tprBtn.addEventListener("click",function(){
+tprc +=1
+
+
+if(tprc%2==1){
+tprBtn.style.backgroundColor="rgb(109 24 137)"
+tprBtn.children[0].style.right = "10%"
+tprBtn.children[0].style.backgroundColor = "black"   
+
+    
+}
+
+if(tprc%2==0){
+tprBtn.style.backgroundColor="#8080803b"
+tprBtn.children[0].style.right = "63%"
+tprBtn.children[0].style.backgroundColor = "white"   
+
+    
+}
+
+
+    
+})
+
+
+
+configTitle = document.createElement("span")
+configTitle.innerText = "CONFIG"
+Object.assign(configTitle.style, title_style)
+
+tps = document.createElement("span")
+
+plusButton = document.createElement("button")
+minusButton = document.createElement("button")
+
+tps.innerText = TPspeed
+
+tps.style.position = "absolute"
+tps.style.color = "white"
+tps.style.bottom = "76%"
+tps.style.right = "46%"
+tps.style.fontSize = "18px"
+
+
+pmb_style = {
+    width: '35px',
+    height: '25px',
+    position: 'absolute',
+    borderRadius: '100px',
+   
+}
+
+Object.assign(plusButton.style, pmb_style)
+Object.assign(minusButton.style, pmb_style)
+
+minusButton.style.backgroundColor = "red"
+plusButton.style.backgroundColor = "green"
+
+minusButton.style.bottom = "76%"
+plusButton.style.bottom = "76%"
+
+
+minusButton.style.left = "14%"
+plusButton.style.right = "14%"
+
+//hackWindow.appendChild(plusButton)
+//hackWindow.appendChild(minusButton)
+
+pSign = document.createElement("span")
+mSign = document.createElement("span")
+
+pSign.innerText = "+"
+mSign.innerText = "-"
+
+plusButton.appendChild(pSign)
+minusButton.appendChild(mSign)
+
+plusButton.addEventListener("click", function() {
+
+    tps.innerText = parseInt(tps.innerText) + 20
+    TPspeed+=20
+
+})
+minusButton.addEventListener("click", function() {
+
+    tps.innerText = parseInt(tps.innerText) - 20
+    TPspeed-=20
+
+})
+
+function page4func() {
+    hackWindow.innerHTML = ""
+    hackWindow.appendChild(configTitle)
+
+    page4.appendChild(whiteIcon)
+
+    hackWindow.appendChild(plusButton)
+    hackWindow.appendChild(minusButton)
+    hackWindow.appendChild(tps)
+
+    hackWindow.appendChild(clickPlusButton)
+    hackWindow.appendChild(clickMinusButton)
+    hackWindow.appendChild(cps)
+
+    hackWindow.appendChild(fastClickerBtn)
+    hackWindow.appendChild(fastClicker)
+
+    hackWindow.appendChild(targetModeBtn)
+    hackWindow.appendChild(targetMode)
+    hackWindow.appendChild(slider)
+    hackWindow.appendChild(speedText)
+    
+    hackWindow.appendChild(page1)
+    hackWindow.appendChild(page2)
+    hackWindow.appendChild(page3)
+    hackWindow.appendChild(page4)
+
+}
+
+
+clickSpeed = 30
+cps = document.createElement("span")
+cps.innerText = clickSpeed
+
+clickPlusButton = document.createElement("button")
+clickMinusButton = document.createElement("button")
+
+cps.innerText = clickSpeed
+
+cps.style.position = "absolute"
+cps.style.color = "white"
+cps.style.bottom = "62%"
+cps.style.right = "46%"
+cps.style.fontSize = "18px"
+
+
+
+Object.assign(clickPlusButton.style, pmb_style)
+Object.assign(clickMinusButton.style, pmb_style)
+
+clickMinusButton.style.backgroundColor = "red"
+clickPlusButton.style.backgroundColor = "green"
+
+clickMinusButton.style.bottom = "62%"
+clickPlusButton.style.bottom = "62%"
+
+
+clickMinusButton.style.left = "14%"
+clickPlusButton.style.right = "14%"
+
+//hackWindow.appendChild(plusButton)
+//hackWindow.appendChild(minusButton)
+
+cpSign = document.createElement("span")
+cmSign = document.createElement("span")
+
+cpSign.innerText = "+"
+cmSign.innerText = "-"
+
+clickPlusButton.appendChild(cpSign)
+clickMinusButton.appendChild(cmSign)
+
+clickPlusButton.addEventListener("click", function() {
+
+    cps.innerText = parseInt(cps.innerText) + 1
+    clickSpeed+=1
+
+})
+clickMinusButton.addEventListener("click", function() {
+
+    cps.innerText = parseInt(cps.innerText) - 1
+    clickSpeed-=1
+
+})
+
+
+
+
+fastClickerBtn = document.createElement("div")
+targetModeBtn = document.createElement("div")
+
+
+
+fastClicker = document.createElement("span")
+targetMode = document.createElement("span")
+
+
+
+
+
+Object.assign(fastClickerBtn.style,checkboxUnticked_style)
+Object.assign(targetModeBtn.style,checkboxUnticked_style)
+
+
+
+
+
+
+
+
+fastClickerBtn.style.bottom = "35.5%"
+fastClickerBtn.style.marginLeft = "70%"
+targetModeBtn.style.marginLeft = "70%"
+targetModeBtn.style.bottom = "46.7%"
+
+
+
+targetMode.style.bottom = "46%"
+fastClicker.style.fontSize = "15px"
+fastClicker.style.padding = "65.8% 0px 0px 25px"
+fastClicker.style.position = "absolute"
+
+fastClicker.style.bottom = "35%"
+targetMode.style.fontSize = "15px"
+targetMode.style.padding = "65.8% 0px 0px 25px"
+targetMode.style.position = "absolute"
+
+fastClicker.innerText = "Super Clicker:"
+targetMode.innerText = "Target Mode:"
+
+innerCircle22 = document.createElement("div")
+innerCircle23 = document.createElement("div")
+
+
+Object.assign(innerCircle22.style,innerCircle_style)
+Object.assign(innerCircle23.style,innerCircle_style)
+
+
+fastClickerBtn.appendChild(innerCircle22)
+targetModeBtn.appendChild(innerCircle23)
+
+
+//
+slider = document.createElement("input")
+
+slider.type = "range"
+
+
+slider.step = 100
+
+slider.min = 0
+slider.max = 10000
+slider.style.position = "absolute"
+slider.style.bottom = "23%"
+slider.style.marginLeft = "43%"
+
+
+Object.assign(slider.style,{position: 'absolute',
+bottom: '23%',
+marginLeft: '52%',
+background: 'rgb(0 ,0 ,0 ,0.47)',
+opacity: '0.8',
+width: '110px',
+content: 'none',
+appearance: 'none',
+outline: 'rgb(151, 255, 118) solid 2px',
+borderRadius: 'calc(100px)'})
+
+
+
+
+speedText = document.createElement("span")
+setInterval(function(){
+try {
+speedText.innerText = `Speed[${slider.value}]:`    
+} catch (error) {
+    
+}
+},100)
+
+Object.assign(speedText.style,{fontSize: '15px',
+position: 'absolute',
+padding: '64.8% 0px 0px 26px',
+bottom: '23%'})
+
+
+
+
+
+twc = 0
+swc = 0
+
+
+targetModeBtn.addEventListener("click",function(){
+twc +=1
+
+
+if(twc%2==1){
+targetModeBtn.style.backgroundColor="rgb(109 24 137)"
+targetModeBtn.children[0].style.right = "10%"
+targetModeBtn.children[0].style.backgroundColor = "black"   
+isTarget = true
+}
+
+if(twc%2==0){
+targetModeBtn.style.backgroundColor="#8080803b"
+targetModeBtn.children[0].style.right = "63%"
+targetModeBtn.children[0].style.backgroundColor = "white"   
+isTarget = false
+}
+
+
+    
+})
+
+
+
+
+
+fastClickerBtn.addEventListener("click",function(){
+swc +=1
+
+
+if(swc%2==1){
+fastClickerBtn.style.backgroundColor="rgb(109 24 137)"
+fastClickerBtn.children[0].style.right = "10%"
+fastClickerBtn.children[0].style.backgroundColor = "black"   
+Superclicker()
+}
+
+if(swc%2==0){
+fastClickerBtn.style.backgroundColor="#8080803b"
+fastClickerBtn.children[0].style.right = "63%"
+fastClickerBtn.children[0].style.backgroundColor = "white"   
+
+
+cancelAnimationFrame(ck)
+    
+}
+
+
+    
+})
+
+
+
+
+Superclicker = function(){ 
+try {
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[mines]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[repairs]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DD]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[DA]._value_0._value_0.onUserActivatedSupply() 
+game.getTank().components_0.array[27].supplyTypeConfigs_0.entries.$outer.map_97q5dv$_0.internalMap_uxhen5$_0.backingMap_0[NITRO]._value_0._value_0.onUserActivatedSupply() 
+
+ck = requestAnimationFrame(Superclicker)
+    
+} catch (error) {
+    
+} 
+
+
+}
